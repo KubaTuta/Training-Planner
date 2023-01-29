@@ -1,24 +1,64 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./index.css"; 
+import AddNewTask from "./AddNewTask";
+import Excercises from "./Excercises";
+import SetsReps from "./SetsReps";
 
 function App() {
+
+  const [tasks, setTasks] = useState([
+    {
+      id: 2,
+      excercise: "planche lean",
+      sets: 3,
+      reps: "",
+      time: 30,
+    },
+    {
+      id: 3,
+      excercise: "dips",
+      sets: 2,
+      reps: 10,
+      time: "",
+    },
+    {
+      id: 4,
+      excercise: "pullups",
+      sets: 4,
+      reps: 5,
+      time: "",
+    },
+    {
+      id: 5,
+      excercise: "l-sit",
+      sets: 3,
+      reps: "",
+      time: 15,
+    },
+  ]);
+
+  
+  
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="layout">
+      <AddNewTask
+      setTasks={setTasks} 
+      tasks={tasks}
+     
+      />
+      <Excercises 
+     tasks={tasks}
+     setTasks={setTasks}
+     
+      />
+      <SetsReps 
+      tasks={tasks}
+     
+      />
     </div>
+
   );
 }
 
