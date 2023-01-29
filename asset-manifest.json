@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Training-Planner/static/css/main.70043911.css",
+    "main.js": "/Training-Planner/static/js/main.3109267c.js",
+    "static/js/787.b5db2d3f.chunk.js": "/Training-Planner/static/js/787.b5db2d3f.chunk.js",
+    "index.html": "/Training-Planner/index.html",
+    "main.70043911.css.map": "/Training-Planner/static/css/main.70043911.css.map",
+    "main.3109267c.js.map": "/Training-Planner/static/js/main.3109267c.js.map",
+    "787.b5db2d3f.chunk.js.map": "/Training-Planner/static/js/787.b5db2d3f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70043911.css",
+    "static/js/main.3109267c.js"
+  ]
+}
