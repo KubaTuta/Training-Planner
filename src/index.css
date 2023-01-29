@@ -1,11 +1,15 @@
 html {
-  background-color: blueviolet;
+  box-sizing: border-box;
+  background-image: linear-gradient(to right, #ffd89b, #19547b);
 }
 
+*, ::before, ::after {
+  box-sizing: inherit;
+}
 
 .layout {
   display: grid;
-  grid-template-columns: 350px 1fr;
+  grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr;
   gap: 5px 5px;
   grid-template-areas:
@@ -17,34 +21,39 @@ html {
 
 .buttons {
   grid-area: buttons;
-  background-color: teal;
+  background-color: rgba(0, 128, 128, 0.267);
+  border-radius: 10px;
 
 }
+
 .excercises {
   grid-area: excercises;
-  background-color: crimson;
+
 }
+
 .excercises__excercise {
   grid-area: excercises;
-  background-color: rgb(133, 60, 75);
+  background-color: rgba(0, 128, 128, 0.267);
   min-height: 100px;
   margin: 5px;
+  border-radius: 10px;
 }
+
 .sets {
   grid-area: sets;
-  background-color: darkslategray;
+  ;
 }
+
 .sets__set {
   grid-area: sets;
-  background-color: rgba(77, 207, 207, 0.452);
+  background-color: rgb(16 1 5 / 10%);
   min-height: 100px;
+  width: 150px;
   margin: 5px;
+  border-radius: 10px;
 }
+
 .date {
   grid-area: date;
   background-color: blanchedalmond;
 }
-
-
-
-

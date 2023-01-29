@@ -82,19 +82,26 @@ const AddNewTask = ({ setTasks, tasks }) => {
 						onChange={handleRepChange}
 					/>
 					Powtórzenia
-					<input
-						type="radio"
-						name="repsOrTime"
-						value={newTimeBool}
-						onChange={handleTimeChange}
-					/>
-					Czas pod napięciem
-					<input
-						type="number"
-						placeholder="ilość"
-						value={amount}
-						onChange={(event) => { setAmount(event.target.value);  }}
-					/>
+					<p>
+						
+						<input
+							type="radio"
+							name="repsOrTime"
+							value={newTimeBool}
+							onChange={handleTimeChange}
+						/>
+						Czas pod napięciem
+					</p>
+					<p>
+						
+						<input
+							type="number"
+							placeholder="ilość"
+							value={amount}
+							onChange={(event) => { setAmount(event.target.value); }}
+						/>
+					</p>
+
 				</p>
 				<p>
 					<button type="submit">
