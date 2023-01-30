@@ -17,15 +17,6 @@ const AddNewTask = ({ setTasks, tasks }) => {
 	console.log(`time: ${newTime}`);
 	console.log(`amount: ${amount}`);
 
-	const repsOrTime = () => {
-		if (newRepsBool === true) {
-			return setNewReps(amount)
-		}
-		else {
-			return setNewTime(amount)
-		}
-	};
-
 
 	const AddNewTask = (newTask, newSets, newReps, newTime) => {
 		setTasks(tasks => [
@@ -34,8 +25,8 @@ const AddNewTask = ({ setTasks, tasks }) => {
 				id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
 				excercise: newTask,
 				sets: newSets,
-				reps: newReps,
-				time: newTime,
+				reps: newRepsBool ? amount : "",
+				time: newTimeBool ? amount : "",
 			}
 		]
 		);
@@ -53,8 +44,14 @@ const AddNewTask = ({ setTasks, tasks }) => {
 
 	const onFormSubmit = (event) => {
 		event.preventDefault();
-		repsOrTime();
 		AddNewTask(newTask, newSets, newReps, newTime);
+		setNewTask("");
+		setNewSets("");
+		setNewRepsBool(false);
+		setNewTimeBool(false);
+		setNewReps("");
+		setNewTime("");
+		setAmount("");
 	};
 
 	return (
@@ -70,6 +67,7 @@ const AddNewTask = ({ setTasks, tasks }) => {
 				</p>
 				<p>
 					<input
+					type="number"
 						placeholder="ilość serii"
 						value={newSets}
 						onChange={({ target }) => { setNewSets(target.value) }}
@@ -78,39 +76,39 @@ const AddNewTask = ({ setTasks, tasks }) => {
 				<p>
 					<input type="radio"
 						name="repsOrTime"
-						value={newRepsBool}
+
 						onChange={handleRepChange}
 					/>
 					Powtórzenia
-					<p>
-						
-						<input
-							type="radio"
-							name="repsOrTime"
-							value={newTimeBool}
-							onChange={handleTimeChange}
-						/>
-						Czas pod napięciem
-					</p>
-					<p>
-						
-						<input
-							type="number"
-							placeholder="ilość"
-							value={amount}
-							onChange={(event) => { setAmount(event.target.value); }}
-						/>
-					</p>
-
 				</p>
 				<p>
-					<button type="submit">
-						dodaj zadanie
-					</button>
+
+					<input
+						type="radio"
+						name="repsOrTime"
+						onChange={handleTimeChange}
+					/>
+					Czas pod napięciem
+				</p>
+				<p>
+
+					<input
+						type="number"
+						placeholder="ilość"
+						value={amount}
+						onChange={(event) => { setAmount(event.target.value); }}
+					/>
 				</p>
 
-			</form>
-		</div>
+			
+			<p>
+				<button type="submit">
+					dodaj zadanie
+				</button>
+			</p>
+
+		</form>
+		</div >
 
 	);
 };
