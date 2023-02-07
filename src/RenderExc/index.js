@@ -1,10 +1,13 @@
-const Excercises = ({ tasks, setTasks }) => {
+import "./style.css";
+
+const RenderExcercises = ({ tasks, setTasks }) => {
 
 	const removeTask = (id) => {
 		setTasks(tasks => tasks.filter(task => task.id !== id));
 	};
 
 	return (
+	
 		<div className="excercises">
 
 			{tasks.map(task => (
@@ -17,7 +20,7 @@ const Excercises = ({ tasks, setTasks }) => {
 				</div>
 			))}
 		</div>
-	)
+	)	
 };
 
-export default Excercises;
+export default RenderExcercises;

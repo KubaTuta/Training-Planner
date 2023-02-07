@@ -1,61 +1,58 @@
 import { useState } from "react";
-import "./index.css"; 
-import AddNewTask from "./AddNewTask";
-import Excercises from "./Excercises";
-import SetsReps from "./SetsReps";
+import "./index.css";
+import AddNewExc from "./AddNewExc";
+import RenderExcercises from "./RenderExc";
+import AddSession from "./AddSession";
+import RenderSession from "./RenderSession";
 
 function App() {
+  
+const initialTasks = [
+  {
+    id: 1,
+    excercise: "planche lean",
+    session: {sets: 99,
+              reps: "",
+              time: 500,}
+  },
+  {
+    id: 2,
+    excercise: "dips",
+    session: {sets: 100,
+              reps: 300,
+              time: "",}
+  },
+  {
+    id: 3,
+    excercise: "dips",
+    session: {sets: "",
+              reps: "",
+              time: "",}
+  },
+];
 
-  const [tasks, setTasks] = useState([
-    {
-      id: 2,
-      excercise: "planche lean",
-      sets: 3,
-      reps: "",
-      time: 30,
-    },
-    {
-      id: 3,
-      excercise: "dips",
-      sets: 2,
-      reps: 10,
-      time: "",
-    },
-    {
-      id: 4,
-      excercise: "pullups",
-      sets: 4,
-      reps: 5,
-      time: "",
-    },
-    {
-      id: 5,
-      excercise: "l-sit",
-      sets: 3,
-      reps: "",
-      time: 15,
-    },
-  ]);
-
-  
-  
-  
+  const [tasks, setTasks] = useState(initialTasks);
 
   return (
     <div className="layout">
-      <AddNewTask
-      setTasks={setTasks} 
-      tasks={tasks}
-     
+      
+      <AddNewExc
+        setTasks={setTasks}
+        tasks={tasks}
       />
-      <Excercises 
-     tasks={tasks}
-     setTasks={setTasks}
-     
+      
+      <AddSession
       />
-      <SetsReps 
-      tasks={tasks}
-     
+
+      <RenderExcercises
+        tasks={tasks}
+        setTasks={setTasks}
+
+      />
+      <RenderSession
+        tasks={tasks}
+        setTasks={setTasks}
+
       />
     </div>
 
