@@ -14,7 +14,7 @@ html {
   gap: 5px 5px;
   grid-template-areas:
     "buttons date"
-    "excercises sets";
+    "excercises session";
   width: 100%;
   height: 100%;
 }
@@ -23,47 +23,23 @@ html {
   grid-area: buttons;
   background-color: rgba(0, 128, 128, 0.267);
   border-radius: 10px;
-
-}
-
-.excercises {
-  grid-area: excercises;
-
-}
-
-.excercises__excercise {
-  grid-area: excercises;
-  background-color: rgba(0, 128, 128, 0.267);
-  min-height: 100px;
-  margin: 5px;
-  border-radius: 10px;
-  box-shadow: 1px -1px 5px 0px rgb(79 51 112 / 24%);
-  transition: 0.5s;
-}
-.excercises__excercise:hover {
-  transform: scale(1.03);
-}
-.sets {
-  grid-area: sets;
-  
-}
-
-.sets__set {
-  grid-area: sets;
-  background-color: rgb(16 1 5 / 10%);
-  min-height: 100px;
-  width: 150px;
-  margin: 5px;
-  border-radius: 10px;
-  box-shadow: 1px -1px 5px 0px rgb(16 1 5 / 10%);
-  transition: 0.5s;
-  
-}
-.sets__set:hover {
-  transform: scale(1.03);
 }
 
 .date {
   grid-area: date;
   background-color: blanchedalmond;
+  width: 150px;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 1px -1px 5px 0px rgb(16 1 5 / 10%);
+  transition: 0.5s;
+  align-self: end;
+}
+
+.excercises {
+  grid-area: excercises;
+}
+
+.session {
+  grid-area: session;
 }

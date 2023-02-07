@@ -1,10 +1,8 @@
 import "./style.css";
 
-
 const RenderSession = ({ tasks, setTasks }) => {
 
 	console.log(tasks);
-
 
 	const addSets = (id) => {
 		const promptValue = prompt('ile serii');
@@ -59,58 +57,105 @@ const RenderSession = ({ tasks, setTasks }) => {
 		))
 	};
 
+	const resetSets = (id) => {
+		setTasks(tasks.map(task => {
+			if (task.id === id) {
+				return {
+					...task,
+					session: {
+						...task.session,
+						sets: "",
+					}
+				}
+			} else {
+				return task
+			}
+		}
+		))
+	};
+
+	const resetReps = (id) => {
+		setTasks(tasks.map(task => {
+			if (task.id === id) {
+				return {
+					...task,
+					session: {
+						...task.session,
+						reps: "",
+					}
+				}
+			} else {
+				return task
+			}
+		}
+		))
+	};
+
+	const resetTime = (id) => {
+		setTasks(tasks.map(task => {
+			if (task.id === id) {
+				return {
+					...task,
+					session: {
+						...task.session,
+						time: "",
+					}
+				}
+			} else {
+				return task
+			}
+		}
+		))
+	};
+
 	return (
 		<div className="session">
 			{tasks.map(task => {
 				if (task.session.reps === "" && task.session.time === "") {
 					return (
-						<ul
+						<div
 							className="session__set"
 							key={task.id}
 						>
-							<li>
+							<p className="session__cell">
 								Serie: {
-								(task.session.sets === "") ?
-									<button
-										className="session__button"
-										onClick={() => addSets(task.id)}
-									>
-										+
-									</button> :
-									`${task.session.sets}`
-							}<br />
-							</li>
-							<li>
+									(task.session.sets === "") ?
+										<button
+											className="session__button"
+											onClick={() => addSets(task.id)}
+										>
+											+
+										</button> :
+										`${task.session.sets}`
+								}
+								{
+									(task.session.sets === "") ?
+										"" :
+										<button className="session__button" onClick={()=>resetSets(task.id)}>x</button>
+								}
+							</p>
+							<p className="session__cell">
 								Powtórzenia: {
-								(task.session.reps === "") ?
-									<button
-									className="session__button"
-										onClick={() => addReps(task.id)}
-									>+
-									</button> :
-									`${task.session.reps}`
-							}
-							</li>
-
-							<li>
+									(task.session.reps === "") ?
+										<button
+											className="session__button"
+											onClick={() => addReps(task.id)}
+										>+
+										</button> :
+										`${task.session.reps}`
+								}
+							</p>
+							<p className="session__cell">
 								Czas: {
-								(task.session.time === "") ?
-									<button
-									className="session__button"
-										onClick={() => addTime(task.id)}
-									>+</button> :
-									`${task.session.time}`
-							}
-							</li>
-
-
-							<br />
-
-							
-
-						</ul>
-
-
+									(task.session.time === "") ?
+										<button
+											className="session__button"
+											onClick={() => addTime(task.id)}
+										>+</button> :
+										`${task.session.time}`
+								}
+							</p>
+						</div>
 					)
 				}
 				else if (task.session.reps === "") {
@@ -119,18 +164,26 @@ const RenderSession = ({ tasks, setTasks }) => {
 							className="session__set"
 							key={task.id}
 						>
-							Serie: {
-								(task.session.sets === "") ?
-									<button
-										onClick={() => addSets(task.id)}
-									>
-										dodaj
-									</button> :
-									`${task.session.sets}`
-							}<br />
-
-
-							Czas: {task.session.time}s
+							<p className="session__cell">
+								Serie: {
+									(task.session.sets === "") ?
+										<button className="session__button"
+											onClick={() => addSets(task.id)}
+										>
+											+
+										</button> :
+										`${task.session.sets}`
+								}
+								{
+									(task.session.sets === "") ?
+										"" :
+										<button className="session__button" onClick={()=>resetSets(task.id)}>x</button>
+								}
+							</p>
+							<p className="session__cell">
+								Czas: {task.session.time}s
+								<button className="session__button" onClick={()=>resetTime(task.id)}>x</button>
+							</p>
 						</div>
 					)
 				}
@@ -140,25 +193,31 @@ const RenderSession = ({ tasks, setTasks }) => {
 							className="session__set"
 							key={task.id}
 						>
-							Serie: {
-								(task.session.sets === "") ?
-									<button
-										onClick={() => addSets(task.id)}
-									>
-										dodaj
-									</button> :
-									`${task.session.sets}`
-							}<br />
-
-
-							Powtórzenia: {task.session.reps}
+							<p className="session__cell">
+								Serie: {
+									(task.session.sets === "") ?
+										<button className="session__button"
+											onClick={() => addSets(task.id)}
+										>
+											+
+										</button> :
+										`${task.session.sets}`
+								}
+								{
+									(task.session.sets === "") ?
+										"" :
+										<button className="session__button" onClick={()=>resetSets(task.id)}>x</button>
+								}
+							</p>
+							<p className="session__cell">
+								Powtórzenia: {task.session.reps}
+								<button className="session__button" onClick={()=> resetReps(task.id)}>x</button>
+							</p>
 						</div>
 					)
 				}
 			})}
 		</div>
-
-
 	)
 };
 

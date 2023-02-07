@@ -1,0 +1,17 @@
+.excercises__excercise {
+    grid-area: excercises;
+    background-color: rgba(0, 128, 128, 0.267);
+    min-height: 100px;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 1px -1px 5px 0px rgb(79 51 112 / 24%);
+    transition: 0.5s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+.excercises__excercise:hover {
+    transform: scale(1.03);
+}
