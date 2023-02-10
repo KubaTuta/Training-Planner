@@ -6,42 +6,74 @@ import AddSession from "./AddSession";
 import RenderSession from "./RenderSession";
 
 function App() {
+
+  const initialTasks = [
+    {
+      id: 1,
+      excercise: "planche lean",
+      session: {
+        id: 1,
+        sets: 99,
+        reps: "",
+        time: 500,
+      },
+      session2: {
+        id: 2,
+        sets: "xxx",
+        reps: "",
+        time: "zzz"
+      }
+    },
+    {
+      id: 2,
+      excercise: "dips",
+      session: {
+        id: 1,
+        sets: 100,
+        reps: 300,
+        time: "",
+      },
+      session2: {
+        id: 2,
+        sets: "xxx",
+        reps: "",
+        time: "zzz"
+      }
+    },
+    {
+      id: 3,
+      excercise: "dips",
+      session: {
+        id: 1,
+        sets: "",
+        reps: "",
+        time: "",
+      },
+      session2: {
+        id: 2,
+        sets: "xxx",
+        reps: "",
+        time: "zzz"
+      }
+    },
+  ];
   
-const initialTasks = [
-  {
-    id: 1,
-    excercise: "planche lean",
-    session: {sets: 99,
-              reps: "",
-              time: 500,}
-  },
-  {
-    id: 2,
-    excercise: "dips",
-    session: {sets: 100,
-              reps: 300,
-              time: "",}
-  },
-  {
-    id: 3,
-    excercise: "dips",
-    session: {sets: "",
-              reps: "",
-              time: "",}
-  },
-];
 
   const [tasks, setTasks] = useState(initialTasks);
 
+  console.log(tasks);
+
   return (
     <div className="layout">
-      
+
       <AddNewExc
         setTasks={setTasks}
         tasks={tasks}
       />
-      
+
       <AddSession
+      tasks={tasks}
+      setTasks={setTasks}
       />
 
       <RenderExcercises
