@@ -2,37 +2,32 @@
 const AddSession = ({ tasks, setTasks }) => {
 
 	const addNewSession = (tasks) => {
-		setTasks(tasks.map(task => (
-			{
-					...task,
-					session3: {
-						sets: "",
-						reps: "",
-						time: ""
-					}
+		setTasks(tasks.map(task => {
+			let sessionLength = "session" + (Object.keys(task).length - 1);
+
+			return {
+				...task,
+				[sessionLength]: {
+					sets: "",
+					reps: "",
+					time: ""
 				}
-		)
-		 
-					 
-			
-			
-		))
+			}
+		}))
 	};
-
-
 
 	return (
 		<div className="date">
-				<p>
-					dodaj sesję
-				</p>
-				<p>
-					<button
-						onClick={() => addNewSession(tasks)}
-					>
-						Dodaj
-					</button>
-				</p>
+			<p>
+				dodaj sesję
+			</p>
+			<p>
+				<button
+					onClick={() => addNewSession(tasks)}
+				>
+					Dodaj
+				</button>
+			</p>
 		</div>
 	)
 }
