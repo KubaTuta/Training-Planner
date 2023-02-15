@@ -111,74 +111,110 @@ const RenderSession = ({ tasks, setTasks }) => {
 	return (
 		<div className="session" >
 			{tasks.map(task => (
-					<div className="session__seti" key={task.id}>
-						{Object.values(task).map((value) => {
-							if (typeof value === "object") {
-								return (
-									<div className="session__set" key={value.id}>
-										{Object.entries(value).map(([activity, amount]) => {
-											console.log(`${activity}:${amount}`);
-											if ((activity === "sets") && (amount !== "")) {
-												return (
-													<div className="session__cell" key={activity.id}>
-														{activity}: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
-													</div>
-												)
-											}
-											if ((activity === "sets") && (amount === "")) {
-												return (
-													<div className="session__cell" key={activity.id}>
-														{activity}: {amount}	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
-													</div>)
-											}
-
-
-
-
-
-
-											if ((activity === "reps") && (amount !== "") ) {
-												return (
-													<div className="session__cell" key={activity.id}>
-														powtórzenia: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
-													</div>
-												)
-											}
-											if ((activity === "time") && (amount !== "")) {
-												return (
-													<div className="session__cell" key={activity.id}>
-														{activity}: {amount}s 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
-													</div>)
-											}
-									
-								
-												
-												
-											
-
-
-
-
-
-
-
-
-
-
+				<div className="session__seti" key={task.id}>
+					{Object.values(task).map((value) => {
+						if ((typeof value === "object") && (value.time !== "")) {
+							return (
+								<div className="session__set" key={value.id}>
+									{Object.entries(value).map(([activity, amount]) => {
+										console.log(`${activity}:${amount}`);
+										if ((activity === "sets") && (amount !== "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
+												</div>
+											)
+										}
+										if ((activity === "sets") && (amount === "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount}	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
+												</div>)
+										}
+										if (activity === "time") {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount}s 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
+												</div>)
+										}
+										if (activity === "reps") {
 											return null
-
-
-
-										})}
-									</div>
-								);
-							}
-							return null;
-						})}
-					</div>
-				)
+										}
+									})}
+								</div>
+							);
+						}
+						if ((typeof value === "object") && (value.reps !== "")) {
+							return (
+								<div className="session__set" key={value.id}>
+									{Object.entries(value).map(([activity, amount]) => {
+										console.log(`${activity}:${amount}`);
+										if ((activity === "sets") && (amount !== "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
+												</div>
+											)
+										}
+										if ((activity === "sets") && (amount === "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount}	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
+												</div>)
+										}
+										if (activity === "reps") {
+											return (
+												<div className="session__cell" key={activity.id}>
+													powtórzenia: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
+												</div>
+											)
+										}
+										if (activity === "time") {
+											return null
+										}
+									})}
+								</div>)
+						}
+						if ((typeof value === "object") && (value.reps === "") && (value.reps === "")) {
+							return (
+								<div className="session__set" key={value.id}>
+									{Object.entries(value).map(([activity, amount]) => {
+										if ((activity === "sets") && (amount !== "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount} 	<button className="session__button" onClick={() => resetSets(task.id)}>x</button>
+												</div>
+											)
+										}
+										if ((activity === "sets") && (amount === "")) {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount}	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
+												</div>)
+										}
+										if (activity === "reps") {
+											return (
+												<div className="session__cell" key={activity.id}>
+													powtórzenia: {amount} 	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
+												</div>
+											)
+										}
+										if (activity === "time") {
+											return (
+												<div className="session__cell" key={activity.id}>
+													{activity}: {amount}s 	<button className="session__button2" onClick={() => resetSets(task.id)}>+</button>
+												</div>)
+										}
+									}
+									)}
+								</div>
+							)
+						}
+						return null
+					})}
+				</div>
+			)
 			)}
-
 		</div>
 	)
 };
