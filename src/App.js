@@ -11,49 +11,43 @@ function App() {
     {
       id: 1,
       excercise: "planche lean",
-      session: {
-        id: 1,
-        sets: 99,
-        reps: "",
-        time: 500,
+      session1: {
+        sets: "",
+        reps: 100,
+        time: "",
       },
       session2: {
-        id: 2,
-        sets: "xxx",
+        sets: "",
         reps: "",
-        time: "zzz"
+        time: 100
       }
     },
     {
       id: 2,
       excercise: "dips",
-      session: {
-        id: 1,
+      session1: {
         sets: 100,
-        reps: 300,
-        time: "",
+        reps: "",
+        time: 100,
       },
       session2: {
-        id: 2,
-        sets: "xxx",
-        reps: "",
-        time: "zzz"
+        sets: 100,
+        reps: 100,
+        time: ""
       }
     },
     {
       id: 3,
-      excercise: "dips",
-      session: {
-        id: 1,
-        sets: "",
+      excercise: "pushups",
+      session1: {
+        sets: 100,
         reps: "",
         time: "",
       },
       session2: {
-        id: 2,
-        sets: "xxx",
+        sets: "",
         reps: "",
-        time: "zzz"
+        time: ""
       }
     },
   ];

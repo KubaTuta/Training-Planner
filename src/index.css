@@ -42,4 +42,6 @@ html {
 
 .session {
   grid-area: session;
+  display: flex;
+  flex-direction: column
 }

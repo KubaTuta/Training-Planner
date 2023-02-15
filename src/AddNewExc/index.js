@@ -6,18 +6,19 @@ const AddNewExc = ({ setTasks, newSets }) => {
 	const [newTask, setNewTask] = useState("");
 
 	const AddNewExc = (newTask) => {
-		setTasks(tasks => [
+		setTasks(tasks => {
+			return [
 			...tasks,
 			{
 				id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
 				excercise: newTask,
-				session: {
+				session1: {
 					sets: "",
 					reps: "",
 					time: "",
 				}
 			}
-		]
+		]}
 		);
 	};
 
