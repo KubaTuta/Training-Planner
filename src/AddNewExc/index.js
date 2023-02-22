@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 
-const AddNewExc = ({ setTasks, newSets }) => {
+const AddNewExc = ({ tasks, setTasks }) => {
 
 	const [newTask, setNewTask] = useState("");
 

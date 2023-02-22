@@ -28,7 +28,7 @@ height: 100px;
     padding: 5px
 
   }
-  .session__button {
+  .session__removeButton {
     width: 20px;
     height: 20px;
     background-color: rgba(220, 20, 60, 0.733);
@@ -36,7 +36,7 @@ height: 100px;
     border: none;
     transition: 0.5s;
   }
-  .session__button2 {
+  .session__addButton {
     width: 20px;
     height: 20px;
     background-color: teal;

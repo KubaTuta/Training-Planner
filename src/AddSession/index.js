@@ -3,11 +3,11 @@ const AddSession = ({ tasks, setTasks }) => {
 
 	const addNewSession = (tasks) => {
 		setTasks(tasks.map(task => {
-			let sessionLength = "session" + (Object.keys(tasks[0]).length - 1);
+			let sessionName = "session" + (Object.keys(task).length - 1);
 
 			return {
 				...task,
-				[sessionLength]: {
+				[sessionName]: {
 					sets: "",
 					reps: "",
 					time: ""

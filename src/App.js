@@ -12,6 +12,7 @@ function App() {
       id: 1,
       excercise: "planche lean",
       session1: {
+        id: 99,
         sets: "",
         reps: 100,
         time: "",
