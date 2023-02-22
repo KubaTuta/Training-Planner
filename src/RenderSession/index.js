@@ -2,7 +2,7 @@ import "./style.css";
 
 const RenderSession = ({ tasks, setTasks }) => {
 
-	const addSets = (session, excerciseId) => {
+	const addActivity = (session, excerciseId, activity) => {
 		console.log(`session: ${session}, exercise: ${excerciseId}`);
 		const prompt = 99;
 		const sessionName = "session" + (session - 1);
@@ -14,7 +14,7 @@ const RenderSession = ({ tasks, setTasks }) => {
 					[sessionName]: 
 					{
 						...task[sessionName],
-						sets: prompt,
+						[activity]: prompt,
 					}
 				}
 			}
@@ -23,7 +23,7 @@ const RenderSession = ({ tasks, setTasks }) => {
 		))
 	};
 
-	const removeSets = (session, excerciseId) => {
+	const removeActivity = (session, excerciseId, activity) => {
 		const sessionName = "session" + (session - 1);
 		setTasks(tasks.map(task => {
 			if (task.id === excerciseId) {
@@ -32,7 +32,7 @@ const RenderSession = ({ tasks, setTasks }) => {
 					[sessionName]: 
 					{
 						...task[sessionName],
-						sets: "",
+						[activity]: "",
 					}
 				}
 			}
@@ -40,81 +40,6 @@ const RenderSession = ({ tasks, setTasks }) => {
 		}
 		))
 	};
-
-	const addReps = (session, excerciseId) => {
-		const prompt = 77;
-		const sessionName = "session" + (session - 1);
-		setTasks(tasks.map(task => {
-			if (task.id === excerciseId) {
-				return {
-					...task,
-					[sessionName]: 
-					{
-						...task[sessionName],
-						reps: prompt,
-					}
-				}
-			}
-			return task
-		}
-		))
-	};
-
-	const removeReps = (session, excerciseId) => {
-		const sessionName = "session" + (session - 1);
-		setTasks(tasks.map(task => {
-			if (task.id === excerciseId) {
-				return {
-					...task,
-					[sessionName]: 
-					{
-						...task[sessionName],
-						reps: "",
-					}
-				}
-			}
-			return task
-		}
-		))
-	};
-
-	const addTime = (session, excerciseId) => {
-		const prompt = 69;
-		const sessionName = "session" + (session - 1);
-		setTasks(tasks.map(task => {
-			if (task.id === excerciseId) {
-				return {
-					...task,
-					[sessionName]: 
-					{
-						...task[sessionName],
-						time: prompt,
-					}
-				}
-			}
-			return task
-		}
-		))
-	};
-
-	const removeTime = (session, excerciseId) => {
-		const sessionName = "session" + (session - 1);
-		setTasks(tasks.map(task => {
-			if (task.id === excerciseId) {
-				return {
-					...task,
-					[sessionName]: 
-					{
-						...task[sessionName],
-						time: "",
-					}
-				}
-			}
-			return task
-		}
-		))
-	};
-	
 
 	return (
 		<div className="session">
@@ -127,10 +52,10 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__addButton" onClick={() => addSets(session, excercise.id)}>+</button>
+												Serie: {value.sets} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "sets")}>+</button>
 											</div>
 											<div className="session__cell">
-												Powtórzenia: {value.reps} <button className="session__removeButton" onClick={() => removeReps(session, excercise.id)}>x</button>
+												Powtórzenia: {value.reps} <button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "reps")}>x</button>
 											</div>
 										</div>
 									);
@@ -138,10 +63,10 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeSets(session, excercise.id)}>x</button>
+												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "sets")}>x</button>
 											</div>
 											<div className="session__cell">
-												Powtórzenia: {value.reps} <button className="session__removeButton" onClick={() => removeReps(session, excercise.id)}>x</button>
+												Powtórzenia: {value.reps} <button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "reps")}>x</button>
 											</div>
 										</div>
 									);
@@ -149,10 +74,10 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__addButton" onClick={() => addSets(session, excercise.id)}>+</button>
+												Serie: {value.sets} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "sets")}>+</button>
 											</div>
 											<div className="session__cell">
-												Czas: {value.time} s<button className="session__removeButton" onClick={() => removeTime(session, excercise.id)}>x</button>
+												Czas: {value.time} s<button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "time")}>x</button>
 											</div>
 										</div>
 									);
@@ -160,10 +85,10 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeSets(session, excercise.id)}>x</button>
+												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "sets")}>x</button>
 											</div>
 											<div className="session__cell">
-												Czas: {value.time} s<button className="session__removeButton" onClick={() => removeTime(session, excercise.id)}>x</button>
+												Czas: {value.time} s<button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "time")}>x</button>
 											</div>
 										</div>
 									);
@@ -171,13 +96,13 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__addButton" onClick={() => addSets(session, excercise.id)}>+</button>
+												Serie: {value.sets} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "sets")}>+</button>
 											</div>
 											<div className="session__cell">
-												Powtórzenia: {value.reps} <button className="session__addButton" onClick={() => addReps(session, excercise.id)}>+</button>
+												Powtórzenia: {value.reps} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "reps")}>+</button>
 											</div>
 											<div className="session__cell">
-												Czas: {value.time} <button className="session__addButton" onClick={() => addTime(session, excercise.id)}>+</button>
+												Czas: {value.time} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "time")}>+</button>
 											</div>
 										</div>
 									);
@@ -185,13 +110,13 @@ const RenderSession = ({ tasks, setTasks }) => {
 									return (
 										<div className="session__set" key={session}>
 											<div className="session__cell">
-												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeSets(session, excercise.id)}>x</button>
+												Serie: {value.sets} <button className="session__removeButton" onClick={() => removeActivity(session, excercise.id, "sets")}>x</button>
 											</div>
 											<div className="session__cell">
-												Powtórzenia: {value.reps} <button className="session__addButton" onClick={() => addReps(session, excercise.id)}>+</button>
+												Powtórzenia: {value.reps} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "reps")}>+</button>
 											</div>
 											<div className="session__cell">
-												Czas: {value.time} <button className="session__addButton" onClick={() => addTime(session, excercise.id)}>+</button>
+												Czas: {value.time} <button className="session__addButton" onClick={() => addActivity(session, excercise.id, "time")}>+</button>
 											</div>
 										</div>
 									);
