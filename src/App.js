@@ -10,14 +10,15 @@ function App() {
   const initialTasks = [
     {
       id: 1,
-      excercise: "planche lean",
+      exc: "planche lean",
       session1: {
-        id: 99,
+        id: 1,
         sets: "",
         reps: 100,
         time: "",
       },
       session2: {
+        id: 2,
         sets: "",
         reps: "",
         time: 100
@@ -25,13 +26,15 @@ function App() {
     },
     {
       id: 2,
-      excercise: "dips",
+      exc: "dips",
       session1: {
+        id: 1,
         sets: 100,
         reps: "",
         time: 100,
       },
       session2: {
+        id: 2,
         sets: 100,
         reps: 100,
         time: ""
@@ -39,20 +42,21 @@ function App() {
     },
     {
       id: 3,
-      excercise: "pushups",
+      exc: "pushups",
       session1: {
+        id: 1,
         sets: 100,
         reps: "",
         time: "",
       },
       session2: {
+        id: 2,
         sets: "",
         reps: "",
         time: ""
       }
     },
   ];
-  
 
   const [tasks, setTasks] = useState(initialTasks);
 
@@ -69,6 +73,7 @@ function App() {
       <AddSession
       tasks={tasks}
       setTasks={setTasks}
+      
       />
 
       <RenderExcercises
@@ -79,7 +84,6 @@ function App() {
       <RenderSession
         tasks={tasks}
         setTasks={setTasks}
-
       />
     </div>
 
