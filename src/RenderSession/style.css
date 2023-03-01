@@ -6,7 +6,6 @@ height: 100px;
   justify-content: flex-end;
 }
 .session__set {
-    grid-area: sets;
     background-color: rgb(16 1 5 / 10%);
     height: 100px;
     width: 180px;
@@ -45,9 +44,14 @@ height: 100px;
     transition: 0.5s;
   }
   
-  .session__button:hover {
+  .session__removeButton:hover {
     transform: scale(1.1);
     background-color: rgba(220, 20, 60, 1);
-    cursor: pointer
+    cursor: pointer;
+  }
+  .session__addButton:hover {
+    transform: scale(1.1);
+    background-color: rgb(1, 109, 109);
+    cursor: pointer;
   }
  

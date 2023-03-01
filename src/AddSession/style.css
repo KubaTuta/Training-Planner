@@ -1,0 +1,19 @@
+.date__singleDate {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+
+.date__session {
+  width: 180px;
+  background-color: teal;
+  display: flex;
+  
+  justify-content: space-between;
+  padding: 5px;
+}
+.butt {
+  color: white;
+  background-color: crimson;
+  border: none;
+}
