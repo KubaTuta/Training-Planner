@@ -10,7 +10,7 @@ function App() {
   const initialTasks = [
     {
       id: 1,
-      exc: "planche lean",
+      excercise: "planche lean",
       session1: {
         id: 1,
         sets: "",
@@ -26,7 +26,7 @@ function App() {
     },
     {
       id: 2,
-      exc: "dips",
+      excercise: "dips",
       session1: {
         id: 1,
         sets: 100,
@@ -42,7 +42,7 @@ function App() {
     },
     {
       id: 3,
-      exc: "pushups",
+      excercise: "pushups",
       session1: {
         id: 1,
         sets: 100,

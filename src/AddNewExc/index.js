@@ -6,14 +6,37 @@ const AddNewExc = ({ tasks, setTasks }) => {
 	const [newTask, setNewTask] = useState("");
 
 	const AddNewExc = (newTask) => {
-		setTasks(tasks => {
+		if (tasks.length === 0) {
+			setTasks(tasks => {
+				return [
+					...tasks,
+					{
+						id: 1,
+						excercise: newTask,
+						session1: {
+							id: 1,
+							sets: "",
+							reps: "",
+							time: "",
+						}
+					}
+				]
+			})
+		}
+		else {
+			setTasks(tasks => {
+			const arrayExcercise = Object.values(tasks[0]);
+			const lastPosition = Object.keys(tasks[0]).length - 1;
+			const newId = arrayExcercise[lastPosition].id;
+			const sessionName = "session" + newId;
+
 			return [
 			...tasks,
 			{
 				id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
-				exc: newTask,
-				session1: {
-					id: 1,
+				excercise: newTask,
+				[sessionName]: {
+					id: newId,
 					sets: "",
 					reps: "",
 					time: "",
@@ -21,6 +44,9 @@ const AddNewExc = ({ tasks, setTasks }) => {
 			}
 		]}
 		);
+		}
+
+		
 	};
 
 	const onFormSubmit = ("submit", (event) => {

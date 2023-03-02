@@ -10,13 +10,13 @@ const RenderExcercises = ({ tasks, setTasks }) => {
 	
 		<div className="excercises">
 
-			{tasks.map(task => (
+			{tasks.map(excercise => (
 				<div
 					className="excercises__excercise"
-					key={task.id}
+					key={excercise.id}
 				>
-					{task.exc}
-					<button onClick={() => removeTask(task.id)}>🗑</button>
+					{excercise.excercise}
+					<button onClick={() => removeTask(excercise.id)}>🗑</button>
 				</div>
 			))}
 		</div>

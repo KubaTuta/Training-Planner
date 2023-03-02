@@ -4,11 +4,23 @@ const AddSession = ({ tasks, setTasks }) => {
 
 	const addNewSession = (tasks) => {
 		setTasks(tasks.map(excercise => {
-			let arrayExcercise = Object.values(excercise);
-			let lastPosition = Object.keys(excercise).length - 1;
-			let newId = arrayExcercise[lastPosition].id + 1;
-			let sessionName = "session" + newId;
 
+			const arrayExcercise = Object.values(tasks[0]);
+			const lastPosition = Object.keys(tasks[0]).length - 1;
+			const newId = arrayExcercise[lastPosition].id + 1;
+			const sessionName = "session" + newId;
+
+			if (Object.keys(tasks[0]).length < 3) {
+				return {
+					...excercise,
+					session1: {
+						id: 1,
+						sets: "",
+						reps: "",
+						time: ""
+					}
+				}
+			}
 			return {
 				...excercise,
 				[sessionName]: {
@@ -29,9 +41,13 @@ const AddSession = ({ tasks, setTasks }) => {
 		}))
 	};
 
+	if (tasks.length === 0) {
+		return null
+	}
+
 	return (
 		<div className="date">
-			<div>
+			<div >
 				<p>
 					dodaj sesję
 				</p>
@@ -41,7 +57,7 @@ const AddSession = ({ tasks, setTasks }) => {
 					>
 						Dodaj
 					</button>
-					<button onClick={() => console.log(checkSessions())}>fix</button>
+
 				</p>
 			</div>
 			<div className="date__singleDate">
