@@ -3,14 +3,16 @@ import "./style.css";
 const AddSession = ({ tasks, setTasks }) => {
 
 	const addNewSession = (tasks) => {
-		setTasks(tasks.map(task => {
-			let length = (Object.keys(task).length - 1);
-			let sessionName = "session" + length;
+		setTasks(tasks.map(excercise => {
+			let arrayExcercise = Object.values(excercise);
+			let lastPosition = Object.keys(excercise).length - 1;
+			let newId = arrayExcercise[lastPosition].id + 1;
+			let sessionName = "session" + newId;
 
 			return {
-				...task,
+				...excercise,
 				[sessionName]: {
-					id: length,
+					id: newId,
 					sets: "",
 					reps: "",
 					time: ""
@@ -18,45 +20,6 @@ const AddSession = ({ tasks, setTasks }) => {
 			}
 		}))
 	};
-
-	// jeśli zamienie obiekt na tablice i jeśli jej długość np.4 - value.id !== 2 to zmien nazwe session oraz id
-
-	// const checkSessions = () => { //zwraca obiekt który oś zawiera
-	// return (
-	// 	tasks.find(excercise => Object.values(excercise).map(task => task = "boolean"))
-	// )
-	// }
-
-	const checkSessions = () => { //to chcę osiągnąć
-		return (
-			tasks.map((exc) => exc = exc.id === 1))
-				}
-			
-			
-		
-	
-
-
-	// const checkSessions = () => { //to chcę osiągnąć
-	// return (
-	// 	tasks.map(({session2}) => session2)
-	// )
-	// }
-
-	// const checkSessions = () => { // zwraca tablice która zawiera keys lub values(trzeba ustawić)
-	// 	return (
-	// 		tasks.filter(excercise =>Object.values(excercise).includes("planche lean"))
-	// 	)
-	// 	}
-
-	// const checkSessions = () => { // zwraca bool
-	// 	return (
-	// 		tasks.map(excercise =>Object.values(excercise).includes("planche lean"))
-	// 	)
-	// 	}
-
-
-
 
 	const removeSession = (id) => {
 		const sessionName = "session" + (id);

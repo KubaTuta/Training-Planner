@@ -13,6 +13,7 @@ const AddNewExc = ({ tasks, setTasks }) => {
 				id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
 				exc: newTask,
 				session1: {
+					id: 1,
 					sets: "",
 					reps: "",
 					time: "",
