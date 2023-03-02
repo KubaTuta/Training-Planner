@@ -16,7 +16,7 @@ const RenderExcercises = ({ tasks, setTasks }) => {
 					key={excercise.id}
 				>
 					{excercise.excercise}
-					<button onClick={() => removeTask(excercise.id)}>🗑</button>
+					<button className="excercise__remove" onClick={() => removeTask(excercise.id)}>x</button>
 				</div>
 			))}
 		</div>

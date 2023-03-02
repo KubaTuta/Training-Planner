@@ -1,6 +1,7 @@
 .excercises__excercise {
     grid-area: excercises;
-    background-color: rgba(0, 128, 128, 0.267);
+    background-color: #202F4D;
+    color: white;
     min-height: 100px;
     margin: 5px;
     border-radius: 10px;
@@ -10,8 +11,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 5px;
+    
 }
 
 .excercises__excercise:hover {
-    transform: scale(1.03);
+    background-color: rgba(0, 128, 128, 0.467);
+}
+
+.excercise__remove {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(220, 20, 60, 0.733);
+    color: white;
+    border: none;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.excercise__remove:hover {
+    transform: scale(1.1);
+    background-color: rgba(220, 20, 60, 1);
+    cursor: pointer;
 }

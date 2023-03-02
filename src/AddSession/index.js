@@ -47,18 +47,18 @@ const AddSession = ({ tasks, setTasks }) => {
 
 	return (
 		<div className="date">
-			<div >
-				<p>
+			<div className="core">
+				<div>
 					dodaj sesję
-				</p>
-				<p>
+				</div>
+				<div>
 					<button
 						onClick={() => addNewSession(tasks)}
 					>
 						Dodaj
 					</button>
 
-				</p>
+				</div>
 			</div>
 			<div className="date__singleDate">
 				{Object.values(tasks[0]).map((value) => {

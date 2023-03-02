@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  background-image: linear-gradient(to right, #ffd89b, #19547b);
+  background-image: linear-gradient(to right, #3B568C, #405E99, #304673 );
   background-attachment: fixed;
   
 }
@@ -11,8 +11,9 @@ html {
 
 #root {
   font-family: 'Genos', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 1.1em;
+  letter-spacing: 0.08em;
 }
 .layout {
   display: grid;
@@ -30,22 +31,15 @@ html {
   grid-area: buttons;
   background-color: rgba(0, 128, 128, 0.267);
   border-radius: 10px;
+  
+
 }
 
-.date {
-  grid-area: date;
-  background-color: blanchedalmond;
-  min-width: 150px;
-  max-width: fit-content;
-  margin: 5px;
-  border-radius: 10px;
-  box-shadow: 1px -1px 5px 0px rgb(16 1 5 / 10%);
-  transition: 0.5s;
-  align-self: end;
-}
 
 .excercises {
   grid-area: excercises;
+  position: sticky;
+  left: 0;
 }
 
 .session {

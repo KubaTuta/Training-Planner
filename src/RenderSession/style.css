@@ -1,12 +1,13 @@
-.session__seti {
+.session__excercise {
   display: flex;
-height: 100px;
+  height: 100px;
   margin-bottom: 5px;
   flex-direction: row-reverse;
   justify-content: flex-end;
 }
-.session__set {
-    background-color: rgb(16 1 5 / 10%);
+.session__sets {
+    background-color: #202F4D;
+    color: white;
     height: 100px;
     width: 180px;
     margin: 5px;
@@ -17,10 +18,10 @@ height: 100px;
     padding: 5px;
     
   }
-  .session__set:hover {
+  .session__sets:hover {
     background-color: rgb(16 1 5 / 20%);
   }
-  .session__cell {
+  .session__activity {
     display: flex;
     justify-content: space-between;
     margin: 0;
@@ -34,6 +35,9 @@ height: 100px;
     color: white;
     border: none;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .session__addButton {
     width: 20px;
@@ -42,6 +46,9 @@ height: 100px;
     color: white;
     border: none;
     transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   
   .session__removeButton:hover {

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import "./style.css";
+
 
 
 const AddNewExc = ({ tasks, setTasks }) => {
@@ -59,20 +61,20 @@ const AddNewExc = ({ tasks, setTasks }) => {
 	return (
 
 		<div className="buttons ">
-			<form onSubmit={onFormSubmit}>
-				<p>
+			<form className="add__exc" onSubmit={onFormSubmit}>
+				<div>
 					<input
-						placeholder="nazwa ćwiczenia"
+						placeholder=" nazwa ćwiczenia"
 						required={true}
 						value={newTask}
 						onChange={({ target }) => { setNewTask(target.value) }}
 					/>
-				</p>
-				<p>
-					<button type="submit">
-						dodaj zadanie
+				</div>
+				<div>
+					<button className="addButton" type="submit">
+						+
 					</button>
-				</p>
+				</div>
 
 			</form>
 		</div >
