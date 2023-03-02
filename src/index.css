@@ -2,12 +2,18 @@ html {
   box-sizing: border-box;
   background-image: linear-gradient(to right, #ffd89b, #19547b);
   background-attachment: fixed;
+  
 }
 
 *, ::before, ::after {
   box-sizing: inherit;
 }
 
+#root {
+  font-family: 'Genos', sans-serif;
+  font-weight: 600;
+  font-size: 1.1em;
+}
 .layout {
   display: grid;
   grid-template-columns: 200px 1fr;
