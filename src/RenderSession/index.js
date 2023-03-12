@@ -3,10 +3,8 @@ import "./style.css";
 const RenderSession = ({ tasks, setTasks }) => {
 
 	const addActivity = (session, excerciseId, activity) => {
-		console.log(`session: ${session}, exercise: ${excerciseId}`);
-		const prompt = 99;
+		const promptValue = prompt("wprowadź wartość");
 		const sessionName = "session" + (session);
-		console.log(`sesja: ${sessionName}`);
 		setTasks(tasks.map(excercise => {
 			if (excercise.id === excerciseId) {
 				return {
@@ -14,7 +12,7 @@ const RenderSession = ({ tasks, setTasks }) => {
 					[sessionName]:
 					{
 						...excercise[sessionName],
-						[activity]: prompt,
+						[activity]: promptValue,
 					}
 				}
 			}
