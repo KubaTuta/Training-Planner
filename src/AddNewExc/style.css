@@ -10,6 +10,10 @@
   border-radius: 10px;
 }
 
+.add__exc:hover {
+  background-color: rgb(16 1 5 / 40%);
+}
+
 .addButton {
   font-size: 60px;
   height: 30px;

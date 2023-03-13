@@ -8,14 +8,70 @@
     box-shadow: 1px -1px 5px 0px rgb(79 51 112 / 24%);
     transition: 0.5s;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    padding: 5px;
+    align-items: stretch;
     
 }
 
+
+.excercise__buttonUp {
+    background-color: rgb(16 25 44);
+    border: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 10px 10px 0 0;
+    transition: 0.2s;
+    align-self: center;
+    padding: 0;
+    
+}
+
+.excercise__buttonUp:hover {
+    cursor: pointer;
+    background-color: teal;
+}
+
+.excercises__excercise:first-child {
+    padding-top: 17%;
+}
+
+.excercises__content {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+    height: auto;
+    padding-top: auto;
+    padding-bottom: auto;
+}
+
+.excercise__buttonDown {
+    background-color: rgb(16 25 44);
+    border: none;
+    width: 100%;
+    height: 10px;
+    border-radius: 0 0 10px 10px;
+    transition: 0.2s;
+}
+
+.excercise__buttonDown:hover {
+    cursor: pointer;
+    background-color: teal;  
+}
+
+.excercises__excercise:last-child {
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.excercises__buttons {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
 .excercises__excercise:hover {
-    background-color: rgba(0, 128, 128, 0.467);
+    background-color: rgb(16 1 5 / 40%);
 }
 
 .excercise__remove {
@@ -28,10 +84,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 5px 0px rgba(89, 15, 8, 0.86);
+    border-radius: 3px;
 }
 
 .excercise__remove:hover {
     transform: scale(1.1);
     background-color: rgba(220, 20, 60, 1);
+    cursor: pointer;
+}
+
+.excercise__edit {
+    width: 20px;
+    height: 20px;
+    background-color: teal;
+    color: white;
+    border: none;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 5px 0px rgba(89, 15, 8, 0.86);
+    border-radius: 3px;
+}
+
+.excercise__edit:hover {
+    transform: scale(1.1);
+    background-color: teal;
     cursor: pointer;
 }

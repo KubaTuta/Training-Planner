@@ -2,7 +2,6 @@ html {
   box-sizing: border-box;
   background-image: linear-gradient(to right, #3B568C, #405E99, #304673 );
   background-attachment: fixed;
-  
 }
 
 *, ::before, ::after {
@@ -19,7 +18,7 @@ html {
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: auto 1fr;
-  gap: 5px 5px;
+  gap: 5px;
   grid-template-areas:
     "buttons date"
     "excercises session";
@@ -31,10 +30,8 @@ html {
   grid-area: buttons;
   background-color: rgba(0, 128, 128, 0.267);
   border-radius: 10px;
-  
-
+  margin-bottom: 10px;
 }
-
 
 .excercises {
   grid-area: excercises;

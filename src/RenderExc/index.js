@@ -6,7 +6,7 @@ const RenderExcercises = ({ tasks, setTasks }) => {
 		setTasks(tasks => tasks.filter(task => task.id !== id));
 	};
 
-	const changeNameOfExc = (id) => {
+	const editName = (id) => {
 		const newName = prompt("nowa nazwa ćwiczenia");
 		setTasks(tasks.map(excercise => {
 			if (excercise.id === id) {
@@ -35,7 +35,7 @@ const RenderExcercises = ({ tasks, setTasks }) => {
 			}
 			return excercise
 		});
-		setTasks([...unsortedTasks].sort((a,b)=>a.id-b.id))
+		setTasks([...unsortedTasks].sort((a, b) => a.id - b.id))
 	};
 
 	const setDown = (id) => {
@@ -54,35 +54,34 @@ const RenderExcercises = ({ tasks, setTasks }) => {
 			}
 			return excercise
 		});
-		setTasks([...unsortedTasks].sort((a,b)=>a.id-b.id)) 
+		setTasks([...unsortedTasks].sort((a, b) => a.id - b.id))
 	}
 
 	return (
 
 		<div className="excercises">
-
 			{tasks.map(excercise => (
 				<div
 					className="excercises__excercise"
 					key={excercise.id}
 				>
-					{excercise.excercise}
-					<div>
-						{
-							(excercise === tasks[0])
-								? ""
-								: <button className="excercise__remove" onClick={() => setUp(excercise.id)}>⬆</button>
-						}
-						<button className="excercise__remove" onClick={() => changeNameOfExc(excercise.id)}>🔧</button>
-						<button className="excercise__remove" onClick={() => removeTask(excercise.id)}>x</button>
-						{
-							(excercise === tasks[tasks.length - 1])
-								? ""
-								: <button className="excercise__remove" onClick={() => setDown(excercise.id)}>⬇</button>
-						}
+					{
+						(excercise === tasks[0])
+							? ""
+							: <button className="excercise__buttonUp" onClick={() => setUp(excercise.id)}></button>
+					}
+					<div className="excercises__content">
+						{excercise.excercise}
+						<div className="excercises__buttons">
+							<button className="excercise__edit" onClick={() => editName(excercise.id)}>🔧</button>
+							<button className="excercise__remove" onClick={() => removeTask(excercise.id)}>x</button>
+						</div>
 					</div>
-
-
+					{
+						(excercise === tasks[tasks.length - 1])
+							? ""
+							: <button className="excercise__buttonDown" onClick={() => setDown(excercise.id)}></button>
+					}
 				</div>
 			))}
 		</div>

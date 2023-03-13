@@ -19,7 +19,7 @@
     
   }
   .session__sets:hover {
-    background-color: rgb(16 1 5 / 20%);
+    background-color: rgb(16 1 5 / 30%);
   }
   .session__activity {
     display: flex;
@@ -38,6 +38,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 5px 0px rgba(89, 15, 8, 0.86);
+  border-radius: 3px;
   }
   .session__addButton {
     width: 20px;
@@ -49,6 +51,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 1px 1px 5px 0px rgba(28, 47, 107, 0.86);
+  border-radius: 3px;
   }
   
   .session__removeButton:hover {

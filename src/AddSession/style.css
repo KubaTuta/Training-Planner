@@ -10,34 +10,58 @@
   transition: 0.5s;
 }
 .date:hover {
-  background-color: rgb(255, 235, 205);
+  background-color: rgb(16 1 5 / 40%);
 }
 
 .core {
-  margin: 20px;
+  margin: 15px;
+}
+.session__form {
+  max-width: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 20px
+  align-items: center;
+  gap: 15px;
+  margin-left: 9px;
 }
 
 .date__singleDate {
   display: flex;
   flex-direction: row-reverse;
   gap: 10px;
-  
 }
-
 
 .date__session {
   width: 180px;
-  background-color: teal;
+  background-color: #323d53;
   display: flex;
   justify-content: space-around;
-  padding: 5px;
+  padding: 3px;
   border-radius: 10px;
 }
 .butt {
+  width: 20px;
+  height: 20px;
+  background-color: rgba(220, 20, 60, 0.733);
   color: white;
-  background-color: crimson;
   border: none;
+  transition: 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 5px 0px rgba(89, 15, 8, 0.86);
+  border-radius: 3px;
+}
+
+.butt:hover {
+  transform: scale(1.1);
+  background-color: rgba(220, 20, 60, 1);
+  cursor: pointer;
+}
+
+.addBut {
+  background-color: #151F33;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
 }
