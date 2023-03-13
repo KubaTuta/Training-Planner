@@ -3,12 +3,13 @@ import "./style.css";
 
 
 
-const AddNewExc = ({ tasks, setTasks }) => {
+const AddNewExc = ({ tasks, setTasks, newDate }) => {
 
 	const [newTask, setNewTask] = useState("");
 
 	const AddNewExc = (newTask) => {
 		if (tasks.length === 0) {
+			const date = (new Date()).toLocaleString('pl-PL', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '-');
 			setTasks(tasks => {
 				return [
 					...tasks,
@@ -20,6 +21,7 @@ const AddNewExc = ({ tasks, setTasks }) => {
 							sets: "",
 							reps: "",
 							time: "",
+							date: date
 						}
 					}
 				]
@@ -27,28 +29,26 @@ const AddNewExc = ({ tasks, setTasks }) => {
 		}
 		else {
 			setTasks(tasks => {
-			const arrayExcercise = Object.values(tasks[0]);
-			const lastPosition = Object.keys(tasks[0]).length - 1;
-			const newId = arrayExcercise[lastPosition].id;
-			const sessionName = "session" + newId;
+				const arrayExcercise = Object.values(tasks[0]);
+				const lastPosition = Object.keys(tasks[0]).length - 1;
+				const newId = arrayExcercise[lastPosition].id;
+				const sessionName = "session" + newId;
 
-			return [
-			...tasks,
-			{
-				id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
-				excercise: newTask,
-				[sessionName]: {
-					id: newId,
-					sets: "",
-					reps: "",
-					time: "",
-				}
-			}
-		]}
-		);
+				return [
+					...tasks,
+					{
+						id: tasks.length === 0 ? 1 : tasks[tasks.length - 1].id + 1,
+						excercise: newTask,
+						[sessionName]: {
+							id: newId,
+							sets: "",
+							reps: "",
+							time: "",
+							date: tasks[0][sessionName].date,
+						}
+					}]
+			});
 		}
-
-		
 	};
 
 	const onFormSubmit = ("submit", (event) => {
@@ -67,7 +67,7 @@ const AddNewExc = ({ tasks, setTasks }) => {
 						placeholder=" nazwa ćwiczenia"
 						required={true}
 						value={newTask}
-						onChange={({ target }) => { setNewTask(target.value) }}
+						onChange={({ target }) => setNewTask(target.value)}
 					/>
 				</div>
 				<div>

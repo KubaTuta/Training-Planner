@@ -1,10 +1,10 @@
+
 import "./style.css";
 
-const AddSession = ({ tasks, setTasks }) => {
+const AddSession = ({ tasks, setTasks, newDate, setNewDate }) => {
 
 	const addNewSession = (tasks) => {
 		setTasks(tasks.map(excercise => {
-
 			const arrayExcercise = Object.values(tasks[0]);
 			const lastPosition = Object.keys(tasks[0]).length - 1;
 			const newId = arrayExcercise[lastPosition].id + 1;
@@ -17,7 +17,8 @@ const AddSession = ({ tasks, setTasks }) => {
 						id: 1,
 						sets: "",
 						reps: "",
-						time: ""
+						time: "",
+						date: newDate,
 					}
 				}
 			}
@@ -27,7 +28,8 @@ const AddSession = ({ tasks, setTasks }) => {
 					id: newId,
 					sets: "",
 					reps: "",
-					time: ""
+					time: "",
+					date: newDate,
 				}
 			}
 		}))
@@ -41,6 +43,11 @@ const AddSession = ({ tasks, setTasks }) => {
 		}))
 	};
 
+	const onFormSubmit = ("submit", (event) => {
+		event.preventDefault();
+		addNewSession(tasks);
+	});
+
 	if (tasks.length === 0) {
 		return null
 	}
@@ -48,24 +55,33 @@ const AddSession = ({ tasks, setTasks }) => {
 	return (
 		<div className="date">
 			<div className="core">
-				<div>
-					dodaj sesję
-				</div>
-				<div>
-					<button
-						onClick={() => addNewSession(tasks)}
+				<form className="session__form" onSubmit={onFormSubmit}>
+					<div>
+						<input
+						type="date"
+						required={true}
+						value={newDate}
+						onChange={({target})=> setNewDate(target.value)}
+					>
+					</input>
+					</div>
+					<div>
+							<button className="addBut"
+						type="submit"
 					>
 						Dodaj
 					</button>
-
-				</div>
+					</div>
+					
+				
+				</form>
 			</div>
 			<div className="date__singleDate">
 				{Object.values(tasks[0]).map((value) => {
 					if (typeof value === "object") {
 						return (
 							<div className="date__session" key={value.id}>
-								data sesji <button className="butt" onClick={() => removeSession(value.id)} >x</button>
+								{value.date} <button className="butt" onClick={() => removeSession(value.id)} >x</button>
 							</div>
 						)
 					}
