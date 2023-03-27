@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import "./index.css";
-import AddNewExc from "./AddNewExc";
-import RenderExcercises from "./RenderExc";
-import AddSession from "./AddSession";
-import RenderSession from "./RenderSession";
+import AddNewExc from "./Features/AddNewExc";
+import RenderExcercises from "./Features/RenderExc";
+import AddSession from "./Features/AddSession";
+import RenderSession from "./Features/RenderSession";
 
 function App() {
 
