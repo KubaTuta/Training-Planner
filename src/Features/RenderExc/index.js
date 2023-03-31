@@ -1,90 +1,45 @@
-import "./style.css";
+import { useDispatch, useSelector } from "react-redux";
+import { removeExcerise, editName, selectWorkouts, setUp, setDown } from "../workoutSlice";
+import { RemoveButton } from "../../styled";
+import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButton } from "./styled";
 
-const RenderExcercises = ({ tasks, setTasks }) => {
+const RenderExcercises = () => {
 
-	const removeTask = (id) => {
-		setTasks(tasks => tasks.filter(task => task.id !== id));
-	};
-
-	const editName = (id) => {
-		const newName = prompt("nowa nazwa ćwiczenia");
-		setTasks(tasks.map(excercise => {
-			if (excercise.id === id) {
-				return {
-					...excercise,
-					excercise: newName,
-				}
-			}
-			return excercise
-		}))
-	};
-
-	const setUp = (id) => {
-		const unsortedTasks = tasks.map(excercise => {
-			if (excercise.id === id) {
-				return {
-					...excercise,
-					id: id - 1
-				}
-			}
-			if (excercise.id === id - 1) {
-				return {
-					...excercise,
-					id: id
-				}
-			}
-			return excercise
-		});
-		setTasks([...unsortedTasks].sort((a, b) => a.id - b.id))
-	};
-
-	const setDown = (id) => {
-		const unsortedTasks = tasks.map(excercise => {
-			if (excercise.id === id) {
-				return {
-					...excercise,
-					id: id + 1
-				}
-			}
-			if (excercise.id === id + 1) {
-				return {
-					...excercise,
-					id: id
-				}
-			}
-			return excercise
-		});
-		setTasks([...unsortedTasks].sort((a, b) => a.id - b.id))
-	}
+	const tasks = useSelector(selectWorkouts);
+	const dispatch = useDispatch();
 
 	return (
-
-		<div className="excercises">
+		<LayoutWrapper>
 			{tasks.map(excercise => (
-				<div
-					className="excercises__excercise"
-					key={excercise.id}
-				>
+				<Tile key={excercise.id}>
 					{
 						(excercise === tasks[0])
 							? ""
-							: <button className="excercise__buttonUp" onClick={() => setUp(excercise.id)}></button>
+							: <UpButton onClick={() => dispatch(setUp(excercise.id))} />
 					}
-					<div className="excercises__content">
+					<Exercise>
 						{excercise.excercise}
-						<div className="excercises__buttons">
-							<button className="excercise__edit" onClick={() => editName(excercise.id)}>🔧</button>
-							<button className="excercise__remove" onClick={() => removeTask(excercise.id)}>x</button>
-						</div>
-					</div>
+						<Buttons>
+							<EditButton
+								onClick={() => dispatch(editName(excercise.id))}
+							>
+								🔧
+							</EditButton>
+							<RemoveButton
+								onClick={() => dispatch(removeExcerise(excercise.id))}
+							>
+								x
+							</RemoveButton>
+						</Buttons>
+					</Exercise>
 					{
 						(excercise === tasks[tasks.length - 1])
 							? ""
-							: <button className="excercise__buttonDown" onClick={() => setDown(excercise.id)}></button>
+							: <DownButton onClick={() => dispatch(setDown(excercise.id))} />
 					}
-				</div>
+				</Tile>
 			))}
-		</div>
+		</LayoutWrapper>
 	)
 };
 

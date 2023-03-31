@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addActivity, removeActivity, selectWorkouts } from "../workoutSlice";
-import { Activity, Excercise, PlusButton, RemoveButton, SessionContainer, SessionTile } from "./styled";
+import { Activity, Excercise, PlusButton, LayoutWrapper, SessionTile } from "./styled";
+import { RemoveButton } from "../../styled";
 
 const RenderSession = () => {
 
@@ -20,7 +21,7 @@ const RenderSession = () => {
 	}
 
 	return (
-		<SessionContainer>
+		<LayoutWrapper>
 			{tasks.map(excercise => (
 				<Excercise key={excercise.id}>
 					{Object.values(excercise).map(value => {
@@ -174,7 +175,7 @@ const RenderSession = () => {
 					})}
 				</Excercise>
 			))}
-		</SessionContainer>
+		</LayoutWrapper>
 	)
 };
 
