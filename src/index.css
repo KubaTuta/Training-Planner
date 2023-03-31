@@ -38,9 +38,3 @@ html {
   position: sticky;
   left: 0;
 }
-
-.session {
-  grid-area: session;
-  display: flex;
-  flex-direction: column
-}
