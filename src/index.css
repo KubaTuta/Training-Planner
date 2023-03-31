@@ -26,15 +26,5 @@ html {
   height: 100%;
 }
 
-.buttons {
-  grid-area: buttons;
-  background-color: rgba(0, 128, 128, 0.267);
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
 
-.excercises {
-  grid-area: excercises;
-  position: sticky;
-  left: 0;
-}
+
