@@ -111,6 +111,61 @@ const workoutSlice = createSlice({
           ;
       }
     },
+    removeExcerise: (state, action) => {
+      const id = action.payload;
+      state.tasks = state.tasks.filter(task => task.id !== id);
+    },
+    editName: (state, action) => {
+      const id = action.payload;
+      const newName = prompt("nowa nazwa ćwiczenia");
+      state.tasks = state.tasks.map(excercise => {
+        if (excercise.id === id) {
+          return {
+            ...excercise,
+            excercise: newName,
+          }
+        }
+        return excercise
+      })
+    },
+    setUp: (state, action) => {
+      const id = action.payload;
+      const unsortedTasks = state.tasks.map(excercise => {
+        if (excercise.id === id) {
+          return {
+            ...excercise,
+            id: id - 1
+          }
+        }
+        if (excercise.id === id - 1) {
+          return {
+            ...excercise,
+            id: id
+          }
+        }
+        return excercise
+      });
+      state.tasks = ([...unsortedTasks].sort((a, b) => a.id - b.id))
+    },
+    setDown: (state, action) => {
+      const id = action.payload;
+      const unsortedTasks = state.tasks.map(excercise => {
+        if (excercise.id === id) {
+          return {
+            ...excercise,
+            id: id + 1
+          }
+        }
+        if (excercise.id === id + 1) {
+          return {
+            ...excercise,
+            id: id
+          }
+        }
+        return excercise
+      });
+      state.tasks = ([...unsortedTasks].sort((a, b) => a.id - b.id))
+    },
     addSession: (state, action) => {
       const newDate = action.payload;
       state.tasks = state.tasks.map(excercise => {
@@ -193,7 +248,17 @@ const workoutSlice = createSlice({
   }
 });
 
-export const { addExcercise, addSession, removeSession, addActivity, removeActivity } = workoutSlice.actions;
+export const { 
+  addExcercise, 
+  removeExcerise, 
+  editName, 
+  setUp,
+  setDown,
+  addSession, 
+  removeSession, 
+  addActivity, 
+  removeActivity 
+} = workoutSlice.actions;
 
 export const selectWorkoutsState = state => state.workout;
 export const selectWorkouts = state => selectWorkoutsState(state).tasks;
