@@ -1,64 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getWorkoutFromLocalStorage } from "./workoutLocalStorage";
 
 const workoutSlice = createSlice({
   name: "workouts",
   initialState: {
-    tasks: [
-      {
-        id: 1,
-        excercise: "planche lean",
-        session1: {
-          id: 1,
-          sets: "",
-          reps: 100,
-          time: "",
-          date: "2022-12-31"
-        },
-        session2: {
-          id: 2,
-          sets: "",
-          reps: "",
-          time: 100,
-          date: "2023-01-01"
-        }
-      },
-      {
-        id: 2,
-        excercise: "dips",
-        session1: {
-          id: 1,
-          sets: 100,
-          reps: "",
-          time: 100,
-          date: "2022-12-31"
-        },
-        session2: {
-          id: 2,
-          sets: 100,
-          reps: 100,
-          time: "",
-          date: "2023-01-01"
-        }
-      },
-      {
-        id: 3,
-        excercise: "pushups",
-        session1: {
-          id: 1,
-          sets: 100,
-          reps: "",
-          time: "",
-          date: "2022-12-31"
-        },
-        session2: {
-          id: 2,
-          sets: "",
-          reps: "",
-          time: "",
-          date: "2023-01-01"
-        }
-      },
-    ]
+    tasks: getWorkoutFromLocalStorage(),
   },
   reducers: {
     addExcercise: (state, action) => {

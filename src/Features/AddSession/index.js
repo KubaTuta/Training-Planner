@@ -4,7 +4,7 @@ import { removeSession } from "../workoutSlice";
 import { RemoveButton } from "../../styled";
 import { AddButton, LayoutWrapper, MiniDateTile, SessionDate, StyledForm } from "./styled";
 
-const AddSession = ({ newDate, setNewDate }) => {
+const AddSession = ({newDate, setNewDate}) => {
 
 	const dispatch = useDispatch();
 	const tasks = useSelector(selectWorkouts);
