@@ -15,7 +15,7 @@ export const LayoutWrapper = styled.div`
   }
 `;
 
-export const StyledForm = styled.div`
+export const StyledForm = styled.form`
   max-width: fit-content;
   display: flex;
   flex-direction: column;
