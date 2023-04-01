@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/Training-Planner/static/css/main.0df65358.css",
-    "main.js": "/Training-Planner/static/js/main.f273f7c3.js",
+    "main.css": "/Training-Planner/static/css/main.372fbf95.css",
+    "main.js": "/Training-Planner/static/js/main.b6836c6b.js",
     "static/js/787.b5db2d3f.chunk.js": "/Training-Planner/static/js/787.b5db2d3f.chunk.js",
     "index.html": "/Training-Planner/index.html",
-    "main.0df65358.css.map": "/Training-Planner/static/css/main.0df65358.css.map",
-    "main.f273f7c3.js.map": "/Training-Planner/static/js/main.f273f7c3.js.map",
+    "static/media/plus.svg": "/Training-Planner/static/media/plus.8004fe46e274e8255975ccb153ce3855.svg",
+    "main.372fbf95.css.map": "/Training-Planner/static/css/main.372fbf95.css.map",
+    "main.b6836c6b.js.map": "/Training-Planner/static/js/main.b6836c6b.js.map",
     "787.b5db2d3f.chunk.js.map": "/Training-Planner/static/js/787.b5db2d3f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0df65358.css",
-    "static/js/main.f273f7c3.js"
+    "static/css/main.372fbf95.css",
+    "static/js/main.b6836c6b.js"
   ]
 }
