@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  grid-area: date;
+  grid-area: addDate;
   background-color: #202F4D;
   color: white;
-  min-width: 150px;
+  min-width: 20px;
   max-width: fit-content;
   margin: 5px;
   border-radius: 10px;
@@ -15,34 +15,14 @@ export const LayoutWrapper = styled.div`
   }
 `;
 
-export const StyledForm = styled.form`
-  max-width: fit-content;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  margin: 15px;
-  margin-left: 24px;
-`;
-
-export const AddButton = styled.button`
-  background-color: #151F33;
+export const StyledButton = styled.button`
+  width: 100%;
+  height: 100%;
+  background-color: transparent;  
   border: none;
-  border-radius: 5px;
-  padding: 10px;
-`;
-
-export const SessionDate = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  gap: 10px;
-`;
-
-export const MiniDateTile = styled.div`
-  width: 180px;
-  background-color: #323d53;
-  display: flex;
-  justify-content: space-around;
-  padding: 3px;
   border-radius: 10px;
+  &:hover {
+    background-color: rgb(16 1 5 / 40%);
+    cursor: pointer;
+  }
 `;
