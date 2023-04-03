@@ -1,53 +1,29 @@
-import { useDispatch, useSelector } from "react-redux";
-import { addSession, selectWorkouts } from "../workoutSlice";
-import { removeSession } from "../workoutSlice";
-import { RemoveButton } from "../../styled";
-import { AddButton, LayoutWrapper, MiniDateTile, SessionDate, StyledForm } from "./styled";
+import { useSelector } from "react-redux";
+import { selectWorkouts } from "../workoutSlice";
+import { LayoutWrapper, StyledButton } from "./styled";
+import Modal from "./Modal";
+import { useState } from "react";
 
-const AddSession = ({newDate, setNewDate}) => {
+const AddSession = () => {
 
-	const dispatch = useDispatch();
 	const tasks = useSelector(selectWorkouts);
 
-	const onFormSubmit = ("submit", (event) => {
-		event.preventDefault();
-		newDate && dispatch(addSession(newDate))
-	});
+	const [modal, setModal] = useState(false);
+
+	console.log(modal)
+
+	const toggleModal = () => {
+		setModal(!modal)
+	};
 
 	if (tasks.length === 0) {
 		return null
 	}
 
 	return (
-		<LayoutWrapper>
-			<StyledForm onSubmit={onFormSubmit}>
-				<input
-					type="date"
-					required={true}
-					value={newDate}
-					onChange={({ target }) => setNewDate(target.value)}
-				/>
-				<AddButton type="submit">
-					Dodaj
-				</AddButton>
-			</StyledForm>
-			<SessionDate>
-				{Object.values(tasks[0]).map((value) => {
-					if (typeof value === "object") {
-						return (
-							<MiniDateTile key={value.id}>
-								{value.date}
-								<RemoveButton
-									onClick={() => dispatch(removeSession(value.id))}
-								>
-									x
-								</RemoveButton>
-							</MiniDateTile>
-						)
-					}
-					else return null
-				})}
-			</SessionDate>
+		<LayoutWrapper >
+			<StyledButton onClick={() => toggleModal()} />
+			{modal && <Modal toggleModal={toggleModal} />}
 		</LayoutWrapper>
 	)
 };

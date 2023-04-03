@@ -17,7 +17,6 @@ export const Tile = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: stretch;
   &:first-child {
     padding-top: 17%;
   };
@@ -25,6 +24,7 @@ export const Tile = styled.div`
     justify-content: flex-start;
     gap: 20px;
   };
+ 
   &:hover {
     background-color: rgb(16 1 5 / 40%);
   }

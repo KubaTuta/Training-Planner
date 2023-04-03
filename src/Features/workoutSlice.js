@@ -62,8 +62,7 @@ const workoutSlice = createSlice({
       state.tasks = state.tasks.filter(task => task.id !== id);
     },
     editName: (state, action) => {
-      const id = action.payload;
-      const newName = prompt("nowa nazwa ćwiczenia");
+      const {id, newName} = action.payload;
       state.tasks = state.tasks.map(excercise => {
         if (excercise.id === id) {
           return {
@@ -146,6 +145,19 @@ const workoutSlice = createSlice({
 
 
     },
+    editDate: (state, action) => {
+      const {id, newDate} = action.payload;
+      const sessionName = "session" + id;
+      state.tasks = state.tasks.map(exercise => {
+        return {
+          ...exercise,
+          [sessionName]: {
+            ...exercise[sessionName],
+            date: newDate,
+          },
+        }
+      })
+    },
     removeSession: (state, action) => {
       const id = action.payload;
       const sessionName = "session" + (id);
@@ -201,6 +213,7 @@ export const {
   setUp,
   setDown,
   addSession, 
+  editDate,
   removeSession, 
   addActivity, 
   removeActivity 
