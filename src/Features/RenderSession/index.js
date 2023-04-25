@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addActivity, removeActivity } from "../workoutSlice";
+import { addActivity, removeActivity } from "../Home/unitSlice";
 import { Activity, Excercise, PlusButton, LayoutWrapper, SessionTile } from "./styled";
 import { RemoveButton } from "../../styled";
 import { selectActiveContent } from "../Home/unitSlice";
@@ -9,12 +9,12 @@ const RenderSession = () => {
 	const dispatch = useDispatch();
 	const tasks = useSelector(selectActiveContent);
 
-	const addHandle = (session, excerciseId, activity) => {
-		dispatch(addActivity({ session, excerciseId, activity }))
+	const addHandle = (session, exerciseId, activity) => {
+		dispatch(addActivity({ session, exerciseId, activity }))
 	};
 
-	const removeHandle = (session, excerciseId, activity) => {
-		dispatch(removeActivity({ session, excerciseId, activity }))
+	const removeHandle = (session, exerciseId, activity) => {
+		dispatch(removeActivity({ session, exerciseId, activity }))
 	};
 
 	if (tasks.length === 0) {
