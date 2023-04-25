@@ -1,16 +1,16 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectWorkouts } from "../workoutSlice";
 import { removeSession } from "../workoutSlice";
 import { RemoveButton } from "../../styled";
 import { LayoutWrapper, MiniDateTile, Date } from "./styled";
 import { Buttons, EditButton } from "../RenderExc/styled";
 import Modal from "./Modal";
 import { useState } from "react";
+import { selectActiveContent } from "../Home/unitSlice";
 
 const SessionDate = () => {
 
 	const dispatch = useDispatch();
-	const tasks = useSelector(selectWorkouts);
+	const tasks = useSelector(selectActiveContent);
 
 	const [modal, setModal] = useState({
 		modalState: false,
