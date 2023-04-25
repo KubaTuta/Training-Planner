@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const unitSlice = createSlice({
   name: "units",
-  initialState:  [
+  initialState: [
     {
       name: 'trening A',
       id: 1,
@@ -43,7 +43,9 @@ const unitSlice = createSlice({
   reducers: {
     addUnit: (state, action) => {
       const newUnit = action.payload;
-      const number = Object.keys(state).length + 1;
+      const lastPosition = Object.keys(state).length - 1;
+      const newId = state[lastPosition].id + 1;
+
       if (state.length === 0) {
         return [
           {
@@ -57,11 +59,17 @@ const unitSlice = createSlice({
         ...state,
         {
           name: newUnit,
-          id: number,
+          id: newId,
           active: false,
           content: [],
         }
       ]
+    },
+    removeUnit: (state, action) => {
+      const id = action.payload;
+      console.log(state.units)
+      state = state.filter(unit => unit.id !== id);
+      return state
     },
     setActiveUnit: (state, action) => {
       const id = action.payload;
@@ -129,7 +137,7 @@ const unitSlice = createSlice({
       state[activeUnit].content = state[activeUnit].content.filter(exercise => exercise.id !== id);
     },
     editName: (state, action) => {
-      const {id, newName} = action.payload;
+      const { id, newName } = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
         if (exercise.id === id) {
@@ -224,7 +232,7 @@ const unitSlice = createSlice({
       })
     },
     editDate: (state, action) => {
-      const {id, newDate} = action.payload;
+      const { id, newDate } = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active);
       const sessionName = "session" + id;
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
@@ -260,7 +268,7 @@ const unitSlice = createSlice({
       const { session, exerciseId, activity } = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active);
       const sessionName = "session" + (session);
-      console.log(session);
+
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
         if (exercise.id === exerciseId) {
           return {
@@ -279,14 +287,15 @@ const unitSlice = createSlice({
   }
 });
 
-export const { 
-  addUnit, 
-  setActiveUnit, 
-  addExcercise, 
-  removeExercise, 
-  editName, 
-  setUp, 
-  setDown, 
+export const {
+  addUnit,
+  removeUnit,
+  setActiveUnit,
+  addExcercise,
+  removeExercise,
+  editName,
+  setUp,
+  setDown,
   addSession,
   removeSession,
   editDate,
