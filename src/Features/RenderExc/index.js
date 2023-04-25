@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setUp, setDown } from "../workoutSlice";
 import { RemoveButton } from "../../styled";
 import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButton } from "./styled";
 import { useState } from "react";
 import Modal from "./Modal";
-import { selectActiveContent, removeExercise } from "../Home/unitSlice";
+import { selectActiveContent, removeExercise, setUp, setDown } from "../Home/unitSlice";
 
 const RenderExcercises = () => {
 

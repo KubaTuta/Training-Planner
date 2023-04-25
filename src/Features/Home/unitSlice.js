@@ -1,9 +1,45 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getUnitFromLocalStorage } from "./unitLocalStorage";
+// import { getUnitFromLocalStorage } from "./unitLocalStorage";
 
 const unitSlice = createSlice({
   name: "units",
-  initialState: getUnitFromLocalStorage,
+  initialState:  [
+    {
+      name: 'trening A',
+      id: 1,
+      active: false,
+      content: []
+    },
+    {
+      name: 'Trening B',
+      id: 2,
+      active: true,
+      content: [
+        {
+          exercise: 'pompki',
+          id: 1,
+          session1: {
+            id: 1,
+            sets: '',
+            reps: '',
+            time: '',
+            date: '25-04-2023'
+          }
+        },
+        {
+          exercise: 'przysiad',
+          id: 2,
+          session1: {
+            id: 1,
+            sets: '',
+            reps: '',
+            time: '',
+            date: '25-04-2023'
+          }
+        }
+      ]
+    }
+  ],
   reducers: {
     addUnit: (state, action) => {
       const newUnit = action.payload;
@@ -105,10 +141,50 @@ const unitSlice = createSlice({
         return exercise
       })
     },
+    setUp: (state, action) => {
+      const id = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const unsortedTasks = state[activeUnit].content.map(exercise => {
+        if (exercise.id === id) {
+          return {
+            ...exercise,
+            id: id - 1
+          }
+        }
+        if (exercise.id === id - 1) {
+          return {
+            ...exercise,
+            id: id
+          }
+        }
+        return exercise
+      });
+      state[activeUnit].content = ([...unsortedTasks].sort((a, b) => a.id - b.id))
+    },
+    setDown: (state, action) => {
+      const id = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const unsortedTasks = state[activeUnit].content.map(exercise => {
+        if (exercise.id === id) {
+          return {
+            ...exercise,
+            id: id + 1
+          }
+        }
+        if (exercise.id === id + 1) {
+          return {
+            ...exercise,
+            id: id
+          }
+        }
+        return exercise
+      });
+      state[activeUnit].content = ([...unsortedTasks].sort((a, b) => a.id - b.id))
+    },
   }
 });
 
-export const { addUnit, setActiveUnit, addExcercise, removeExercise, editName } = unitSlice.actions;
+export const { addUnit, setActiveUnit, addExcercise, removeExercise, editName, setUp, setDown } = unitSlice.actions;
 
 export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
