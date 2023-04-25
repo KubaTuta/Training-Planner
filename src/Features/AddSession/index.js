@@ -10,7 +10,7 @@ const AddSession = () => {
 
 	const [modal, setModal] = useState(false);
 
-	console.log(modal)
+	
 
 	const toggleModal = () => {
 		setModal(!modal)
