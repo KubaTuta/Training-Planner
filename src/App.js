@@ -1,29 +1,31 @@
-import { useState } from "react";
 import "./index.css";
-import AddNewExc from "./Features/AddNewExc";
-import RenderExcercises from "./Features/RenderExc";
-import RenderSession from "./Features/RenderSession";
-import AddSession from "./Features/AddSession";
-import Date from "./Features/SessionDate";
+import Workout from "./Features/workout";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Features/Home";
+import { NavList, NavWrapper, Navbar, StyledNavLink } from "./styled";
 
 function App() {
-
-  const [newDate, setNewDate] = useState("");
-
   return (
-    <div className="layout">
-      <AddNewExc
-        newDate={newDate}
-      />
-      <Date />
-      <AddSession
-        newDate={newDate}
-        setNewDate={setNewDate}
-      />
-      <RenderExcercises />
-      <RenderSession />
-    </div>
-
+    <>
+      <NavWrapper>
+        <Navbar>
+          <NavList>
+            <StyledNavLink to="/">
+              Home
+            </StyledNavLink>
+          </NavList>
+          <NavList>
+            <StyledNavLink to="/workout">
+              Workout
+            </StyledNavLink>
+          </NavList>
+        </Navbar>
+      </NavWrapper>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/workout" element={<Workout />} />
+      </Routes>
+    </>
   );
 }
 
