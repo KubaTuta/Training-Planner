@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { addExcercise } from "../../workoutSlice";
+import { addExcercise } from "../../Home/unitSlice";
 import { ModalTile, ModalWrapper } from "../../../styled";
 
 const Modal = ({ toggleModal }) => {
