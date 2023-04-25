@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { editDate } from "../../workoutSlice";
+import { editDate } from "../../Home/unitSlice";
 import { ModalTile, ModalWrapper } from "../../../styled";
 
 const Modal = ({ id, toggleModal }) => {

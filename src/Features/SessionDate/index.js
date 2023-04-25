@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeSession } from "../workoutSlice";
+import { removeSession } from "../Home/unitSlice";
 import { RemoveButton } from "../../styled";
 import { LayoutWrapper, MiniDateTile, Date } from "./styled";
 import { Buttons, EditButton } from "../RenderExc/styled";

@@ -213,8 +213,68 @@ const unitSlice = createSlice({
           }
         }
       })
+    },
+    removeSession: (state, action) => {
+      const id = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const sessionName = "session" + (id);
+      state[activeUnit].content = state[activeUnit].content.map(task => {
+        const { [sessionName]: beingRemovedSession, ...rest } = task;
+        return rest
+      })
+    },
+    editDate: (state, action) => {
+      const {id, newDate} = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const sessionName = "session" + id;
+      state[activeUnit].content = state[activeUnit].content.map(exercise => {
+        return {
+          ...exercise,
+          [sessionName]: {
+            ...exercise[sessionName],
+            date: newDate,
+          },
+        }
+      })
+    },
+    addActivity: (state, action) => {
+      const { session, exerciseId, activity } = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const promptValue = prompt("podaj ilość serii");
+      const sessionName = "session" + (session);
 
-
+      state[activeUnit].content = state[activeUnit].content.map(exercise => {
+        if (exercise.id === exerciseId) {
+          return {
+            ...exercise,
+            [sessionName]: {
+              ...exercise[sessionName],
+              [activity]: promptValue,
+            }
+          }
+        }
+        return exercise;
+      })
+    },
+    removeActivity: (state, action) => {
+      const { session, exerciseId, activity } = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      const sessionName = "session" + (session);
+      console.log(session);
+      state[activeUnit].content = state[activeUnit].content.map(exercise => {
+        if (exercise.id === exerciseId) {
+          return {
+            ...exercise,
+            [sessionName]:
+            {
+              ...exercise[sessionName],
+              [activity]: "",
+            }
+          }
+        }
+        return exercise
+      }
+      )
     },
   }
 });
@@ -227,7 +287,11 @@ export const {
   editName, 
   setUp, 
   setDown, 
-  addSession } = unitSlice.actions;
+  addSession,
+  removeSession,
+  editDate,
+  addActivity,
+  removeActivity } = unitSlice.actions;
 
 export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
