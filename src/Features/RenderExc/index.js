@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeExcerise, setUp, setDown } from "../workoutSlice";
+import { setUp, setDown } from "../workoutSlice";
 import { RemoveButton } from "../../styled";
 import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButton } from "./styled";
 import { useState } from "react";
 import Modal from "./Modal";
-import { selectActiveContent } from "../Home/unitSlice";
+import { selectActiveContent, removeExercise } from "../Home/unitSlice";
 
 const RenderExcercises = () => {
 
@@ -43,7 +43,7 @@ const RenderExcercises = () => {
 								🔧
 							</EditButton>
 							<RemoveButton
-								onClick={() => dispatch(removeExcerise(exercise.id))}
+								onClick={() => dispatch(removeExercise(exercise.id))}
 							>
 								x
 							</RemoveButton>

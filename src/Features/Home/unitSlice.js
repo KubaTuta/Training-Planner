@@ -87,10 +87,15 @@ const unitSlice = createSlice({
         }
       }
     },
+    removeExercise: (state, action) => {
+      const id = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active)
+      state[activeUnit].content = state[activeUnit].content.filter(exercise => exercise.id !== id);
+    },
   }
 });
 
-export const { addUnit, setActiveUnit, addExcercise } = unitSlice.actions;
+export const { addUnit, setActiveUnit, addExcercise, removeExercise } = unitSlice.actions;
 
 export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
