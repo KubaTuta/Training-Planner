@@ -1,12 +1,12 @@
 import { useSelector } from "react-redux";
-import { selectWorkouts } from "../workoutSlice";
 import { LayoutWrapper, StyledButton } from "./styled";
 import Modal from "./Modal";
 import { useState } from "react";
+import { selectActiveContent } from "../Home/unitSlice";
 
 const AddSession = () => {
 
-	const tasks = useSelector(selectWorkouts);
+	const tasks = useSelector(selectActiveContent);
 
 	const [modal, setModal] = useState(false);
 

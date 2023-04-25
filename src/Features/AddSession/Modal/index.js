@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addSession } from "../../workoutSlice";
+import { addSession } from "../../Home/unitSlice";
 import { useRef, useState } from "react";
 import { ModalTile, ModalWrapper } from "../../../styled";
 

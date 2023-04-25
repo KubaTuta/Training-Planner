@@ -181,10 +181,53 @@ const unitSlice = createSlice({
       });
       state[activeUnit].content = ([...unsortedTasks].sort((a, b) => a.id - b.id))
     },
+    addSession: (state, action) => {
+      const newDate = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active);
+      state[activeUnit].content = state[activeUnit].content.map(exercise => {
+        const arrayExercise = Object.values(state[activeUnit].content[0]);
+        const lastPosition = Object.keys(state[activeUnit].content[0]).length - 1;
+        const newId = arrayExercise[lastPosition].id + 1;
+        const sessionName = "session" + newId;
+
+        if (Object.keys(state[activeUnit].content[0]).length < 3) {
+          return {
+            ...exercise,
+            session1: {
+              id: 1,
+              sets: "",
+              reps: "",
+              time: "",
+              date: newDate,
+            }
+          }
+        }
+        return {
+          ...exercise,
+          [sessionName]: {
+            id: newId,
+            sets: "",
+            reps: "",
+            time: "",
+            date: newDate,
+          }
+        }
+      })
+
+
+    },
   }
 });
 
-export const { addUnit, setActiveUnit, addExcercise, removeExercise, editName, setUp, setDown } = unitSlice.actions;
+export const { 
+  addUnit, 
+  setActiveUnit, 
+  addExcercise, 
+  removeExercise, 
+  editName, 
+  setUp, 
+  setDown, 
+  addSession } = unitSlice.actions;
 
 export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
