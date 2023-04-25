@@ -92,10 +92,23 @@ const unitSlice = createSlice({
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
       state[activeUnit].content = state[activeUnit].content.filter(exercise => exercise.id !== id);
     },
+    editName: (state, action) => {
+      const {id, newName} = action.payload;
+      const activeUnit = Object.keys(state).find(unit => state[unit].active)
+      state[activeUnit].content = state[activeUnit].content.map(exercise => {
+        if (exercise.id === id) {
+          return {
+            ...exercise,
+            exercise: newName,
+          }
+        }
+        return exercise
+      })
+    },
   }
 });
 
-export const { addUnit, setActiveUnit, addExcercise, removeExercise } = unitSlice.actions;
+export const { addUnit, setActiveUnit, addExcercise, removeExercise, editName } = unitSlice.actions;
 
 export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
