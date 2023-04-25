@@ -1,19 +1,13 @@
 import { useState } from "react";
-import { LayoutWrapper, StyledButton } from "./styled";
+import { LayoutWrapper, StyledButton, StyledList, StyledSpan, StyledUnit } from "./styled";
 import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { addExcercise, selectActiveContent, selectActiveName, selectUnitName, selectUnitState, setActiveUnit } from "./unitSlice";
+import { removeUnit, selectActiveName, selectUnitState, setActiveUnit } from "./unitSlice";
+import { RemoveButton } from "../../styled";
 
 const Home = () => {
 	const units = useSelector(selectUnitState);
-	console.log("units")
-	console.log(Object.values(units))
-	console.log("name")
-	const names = useSelector(selectUnitName)
-	console.log(names)
-	const aktyw = useSelector(selectActiveName);
-	const content = useSelector(selectActiveContent);
-	console.log(content)
+	const active = useSelector(selectActiveName);
 
 	const [modal, setModal] = useState(false);
 	const dispatch = useDispatch();
@@ -27,18 +21,20 @@ const Home = () => {
 			<StyledButton onClick={() => toggleModal()}>
 				dodaj
 			</StyledButton>
-			<button onClick={() => dispatch(addExcercise("pompki"))}>2 powtórzenia</button>
-			<ul>
+			<StyledList>
 				{Object.values(units).map(unit =>
-					<li key={unit.id}>
-						{unit.name}-id:{unit.id}
-						<button onClick={() => dispatch(setActiveUnit(unit.id))}>
-							aktywuj
-						</button>
-					</li>
+					<StyledUnit
+						active={active}
+						name={unit.name}
+						key={unit.id}
+					>
+						<StyledSpan onClick={() => dispatch(setActiveUnit(unit.id))}>{unit.name}</StyledSpan>
+						<RemoveButton onClick={() => dispatch(removeUnit(unit.id))} >
+							x
+						</RemoveButton>
+					</StyledUnit>
 				)}
-			</ul>
-			<p>aktywny: {aktyw}</p>
+			</StyledList>
 		</LayoutWrapper >
 	)
 };
