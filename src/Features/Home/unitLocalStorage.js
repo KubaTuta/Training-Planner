@@ -1,5 +1,5 @@
-export const saveUnitOnLocalStorage = units =>
+export const saveUnitsOnLocalStorage = units =>
   localStorage.setItem("units", JSON.stringify(units));
 
-export const getUnitFromLocalStorage = () =>
+export const getUnitsFromLocalStorage = () =>
   JSON.parse(localStorage.getItem("units")) || [];
