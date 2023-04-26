@@ -28,10 +28,7 @@ const Modal = ({ id, toggleModal }) => {
             type="text"
             ref={inputRef}
             onChange={(event) => setNewName(event.target.value)}
-
-          /><br />
-          {id}<br />
-          {newName}
+          />
           <button
             onClick={(event) => onFormSubmit(event, id)}
           >Zapisz</button>

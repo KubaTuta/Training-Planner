@@ -27,8 +27,7 @@ const Modal = ({ id, toggleModal }) => {
             type="date"
             ref={inputRef}
             onChange={(event) => setNewDate(event.target.value)}
-          /><br />
-          {id}<br />
+          />
           <button
             onClick={(event) => onFormSubmit(event, id)}
           >Zapisz</button>

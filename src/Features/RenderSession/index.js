@@ -1,20 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addActivity, removeActivity } from "../Home/unitSlice";
+import { removeActivity } from "../Home/unitSlice";
 import { Activity, Excercise, PlusButton, LayoutWrapper, SessionTile } from "./styled";
 import { RemoveButton } from "../../styled";
 import { selectActiveContent } from "../Home/unitSlice";
+import Modal from "./Modal";
+import { useState } from "react";
 
 const RenderSession = () => {
 
 	const dispatch = useDispatch();
 	const tasks = useSelector(selectActiveContent);
 
-	const addHandle = (session, exerciseId, activity) => {
-		dispatch(addActivity({ session, exerciseId, activity }))
-	};
-
 	const removeHandle = (session, exerciseId, activity) => {
 		dispatch(removeActivity({ session, exerciseId, activity }))
+	};
+
+	const [modal, setModal] = useState({
+		state: false,
+	});
+	
+	const toggleModal = (session, exerciseId, activity) => {
+		setModal(prevState => ({
+			state: !prevState.state,
+			session,
+			exerciseId,
+			activity
+		})
+		)
 	};
 
 	if (tasks.length === 0) {
@@ -23,6 +35,7 @@ const RenderSession = () => {
 
 	return (
 		<LayoutWrapper>
+			{modal.state && <Modal modal={modal} toggleModal={toggleModal}/>}
 			{tasks.map(exercise => (
 				<Excercise key={exercise.id}>
 					{Object.values(exercise).map(value => {
@@ -34,7 +47,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "sets")}
+													onClick={() => toggleModal(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -76,7 +89,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "sets")}
+													onClick={() => toggleModal(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -118,7 +131,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "sets")}
+													onClick={() => toggleModal(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -126,7 +139,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "reps")}
+													onClick={() => toggleModal(value.id, exercise.id, "reps")}
 												>
 													+
 												</PlusButton>
@@ -134,7 +147,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "time")}>
+													onClick={() => toggleModal(value.id, exercise.id, "time")}>
 													+
 												</PlusButton>
 											</Activity>
@@ -154,7 +167,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "reps")}
+													onClick={() => toggleModal(value.id, exercise.id, "reps")}
 												>
 													+
 												</PlusButton>
@@ -162,7 +175,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time}
 												<PlusButton
-													onClick={() => addHandle(value.id, exercise.id, "time")}
+													onClick={() => toggleModal(value.id, exercise.id, "time")}
 												>
 													+
 												</PlusButton>

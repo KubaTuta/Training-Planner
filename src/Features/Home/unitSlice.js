@@ -225,9 +225,8 @@ const unitSlice = createSlice({
       })
     },
     addActivity: (state, action) => {
-      const { session, exerciseId, activity } = action.payload;
+      const { session, exerciseId, activity, newValue } = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active);
-      const promptValue = prompt("podaj ilość serii");
       const sessionName = "session" + (session);
 
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
@@ -236,7 +235,7 @@ const unitSlice = createSlice({
             ...exercise,
             [sessionName]: {
               ...exercise[sessionName],
-              [activity]: promptValue,
+              [activity]: newValue,
             }
           }
         }
