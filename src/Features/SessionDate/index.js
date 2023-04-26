@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { removeSession } from "../Home/unitSlice";
 import { RemoveButton } from "../../styled";
 import { LayoutWrapper, MiniDateTile, Date } from "./styled";
@@ -6,10 +6,11 @@ import { Buttons, EditButton } from "../RenderExc/styled";
 import Modal from "./Modal";
 import { useState } from "react";
 import { selectActiveContent } from "../Home/unitSlice";
+import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
+import RemoveModal from "../../common/RemoveModal";
 
 const SessionDate = () => {
 
-	const dispatch = useDispatch();
 	const tasks = useSelector(selectActiveContent);
 
 	const [modal, setModal] = useState({
@@ -24,6 +25,8 @@ const SessionDate = () => {
 		})
 	};
 
+	const { removeModal, toggleRemoveModal } = useRemoveModal();
+
 	if (tasks.length === 0) {
 		return null
 	}
@@ -31,6 +34,7 @@ const SessionDate = () => {
 	return (
 		<LayoutWrapper>
 			{modal.modalState && <Modal id={modal.modalId} toggleModal={toggleModal} />}
+			{removeModal.state && <RemoveModal toggleRemoveModal={toggleRemoveModal} remove={removeSession(removeModal.id)} />}
 			<Date>
 				{Object.values(tasks[0]).map((value) => {
 					if (typeof value === "object") {
@@ -44,7 +48,7 @@ const SessionDate = () => {
 										🔧
 									</EditButton>
 									<RemoveButton
-										onClick={() => dispatch(removeSession(value.id))}
+										onClick={() => toggleRemoveModal(value.id)}
 									>
 										x
 									</RemoveButton>

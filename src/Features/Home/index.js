@@ -19,14 +19,17 @@ import RemoveModal from "../../common/RemoveModal";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 
 const Home = () => {
+
+	const dispatch = useDispatch();
+
 	const units = useSelector(selectUnitState);
 	const active = useSelector(selectActiveName);
 
 	const [modal, setModal] = useState(false);
-	const dispatch = useDispatch();
 	const toggleModal = () => {
 		setModal(!modal)
 	};
+	
 	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
 	return (
