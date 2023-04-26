@@ -1,8 +1,19 @@
 import { useState } from "react";
-import { LayoutWrapper, StyledButton, StyledList, StyledSpan, StyledUnit } from "./styled";
-import Modal from "./Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { removeUnit, selectActiveName, selectUnitState, setActiveUnit } from "./unitSlice";
+import Modal from "./Modal";
+import {
+	removeUnit,
+	selectActiveName,
+	selectUnitState,
+	setActiveUnit
+} from "./unitSlice";
+import {
+	LayoutWrapper,
+	StyledButton,
+	StyledList,
+	StyledSpan,
+	StyledUnit
+} from "./styled";
 import { RemoveButton } from "../../styled";
 
 const Home = () => {
@@ -40,4 +51,3 @@ const Home = () => {
 };
 
 export default Home;
-
