@@ -1,50 +1,48 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { getUnitFromLocalStorage } from "./unitLocalStorage";
+import { getUnitsFromLocalStorage } from "./unitLocalStorage";
 
 const unitSlice = createSlice({
   name: "units",
-  initialState: [
-    {
-      name: 'trening A',
-      id: 1,
-      active: false,
-      content: []
-    },
-    {
-      name: 'Trening B',
-      id: 2,
-      active: true,
-      content: [
-        {
-          exercise: 'pompki',
-          id: 1,
-          session1: {
-            id: 1,
-            sets: '',
-            reps: '',
-            time: '',
-            date: '25-04-2023'
-          }
-        },
-        {
-          exercise: 'przysiad',
-          id: 2,
-          session1: {
-            id: 1,
-            sets: '',
-            reps: '',
-            time: '',
-            date: '25-04-2023'
-          }
-        }
-      ]
-    }
-  ],
+  initialState: getUnitsFromLocalStorage,
+  //   {
+  //     name: 'trening A',
+  //     id: 1,
+  //     active: false,
+  //     content: []
+  //   },
+  //   {
+  //     name: 'Trening B',
+  //     id: 2,
+  //     active: true,
+  //     content: [
+  //       {
+  //         exercise: 'pompki',
+  //         id: 1,
+  //         session1: {
+  //           id: 1,
+  //           sets: '',
+  //           reps: '',
+  //           time: '',
+  //           date: '25-04-2023'
+  //         }
+  //       },
+  //       {
+  //         exercise: 'przysiad',
+  //         id: 2,
+  //         session1: {
+  //           id: 1,
+  //           sets: '',
+  //           reps: '',
+  //           time: '',
+  //           date: '25-04-2023'
+  //         }
+  //       }
+  //     ]
+  //   }
+  // ],
   reducers: {
     addUnit: (state, action) => {
       const newUnit = action.payload;
-      const lastPosition = Object.keys(state).length - 1;
-      const newId = state[lastPosition].id + 1;
 
       if (state.length === 0) {
         return [
@@ -55,19 +53,24 @@ const unitSlice = createSlice({
             content: [],
           }
         ]
-      } else return [
-        ...state,
-        {
-          name: newUnit,
-          id: newId,
-          active: false,
-          content: [],
-        }
-      ]
+      } else {
+        const lastPosition = Object.keys(state).length - 1;
+        const newId = state[lastPosition].id + 1;
+        return [
+          ...state,
+          {
+            name: newUnit,
+            id: newId,
+            active: false,
+            content: [],
+          }
+        ]
+      }
     },
     removeUnit: (state, action) => {
       const id = action.payload;
-      console.log(state.units)
+
+      console.log(state.length)
       state = state.filter(unit => unit.id !== id);
       return state
     },
