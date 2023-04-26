@@ -11,7 +11,6 @@ import {
 	LayoutWrapper,
 	StyledButton,
 	StyledList,
-	StyledSpan,
 	StyledUnit
 } from "./styled";
 import { RemoveButton } from "../../styled";

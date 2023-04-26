@@ -38,5 +38,3 @@ export const StyledUnit = styled.li`
     box-shadow: inset 0px 0px 10px 2px #253B66;
   }
 `;
-export const StyledSpan = styled.span`
-`;
