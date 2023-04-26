@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { editName } from "../../workoutSlice";
+import { editName } from "../../Home/unitSlice";
 import { useEffect, useRef, useState } from "react";
 import { ModalTile, ModalWrapper } from "../../../styled";
 

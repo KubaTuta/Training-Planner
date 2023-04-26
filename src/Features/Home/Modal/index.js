@@ -1,10 +1,9 @@
-import { useDispatch } from "react-redux";
-import { useEffect, useRef, useState } from "react";
-import { addExcercise } from "../../Home/unitSlice";
-import { ModalTile, ModalWrapper } from "../../../styled";
+import React, { useEffect, useRef, useState } from 'react'
+import { ModalTile, ModalWrapper } from '../../../styled'
+import { useDispatch } from 'react-redux';
+import { addUnit } from '../unitSlice';
 
-const Modal = ({ toggleModal }) => {
-
+const Modal = ({toggleModal}) => {
   const dispatch = useDispatch();
   const inputRef = useRef(null);
 
@@ -12,19 +11,17 @@ const Modal = ({ toggleModal }) => {
 
 	const onFormSubmit = ("submit", (event) => {
 		event.preventDefault();
-
-		newName.trim().length > 0 && dispatch(addExcercise(newName.trim()));
+    newName.trim().length > 0 && dispatch(addUnit(newName.trim()));
 		toggleModal();
 	});
 
   useEffect(() => inputRef.current.focus(), []);
-
   return (
     <ModalWrapper>
       <ModalTile>
         <form>
           <input
-            placeholder="nazwa ćwiczenia"
+            placeholder="nazwa jednostki treningowej"
             value={newName}
             type="text"
             ref={inputRef}

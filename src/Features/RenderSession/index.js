@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addActivity, removeActivity, selectWorkouts } from "../workoutSlice";
+import { addActivity, removeActivity } from "../Home/unitSlice";
 import { Activity, Excercise, PlusButton, LayoutWrapper, SessionTile } from "./styled";
 import { RemoveButton } from "../../styled";
+import { selectActiveContent } from "../Home/unitSlice";
 
 const RenderSession = () => {
 
 	const dispatch = useDispatch();
-	const tasks = useSelector(selectWorkouts);
+	const tasks = useSelector(selectActiveContent);
 
-	const addHandle = (session, excerciseId, activity) => {
-		dispatch(addActivity({ session, excerciseId, activity }))
+	const addHandle = (session, exerciseId, activity) => {
+		dispatch(addActivity({ session, exerciseId, activity }))
 	};
 
-	const removeHandle = (session, excerciseId, activity) => {
-		dispatch(removeActivity({ session, excerciseId, activity }))
+	const removeHandle = (session, exerciseId, activity) => {
+		dispatch(removeActivity({ session, exerciseId, activity }))
 	};
 
 	if (tasks.length === 0) {
@@ -22,9 +23,9 @@ const RenderSession = () => {
 
 	return (
 		<LayoutWrapper>
-			{tasks.map(excercise => (
-				<Excercise key={excercise.id}>
-					{Object.values(excercise).map(value => {
+			{tasks.map(exercise => (
+				<Excercise key={exercise.id}>
+					{Object.values(exercise).map(value => {
 						if (typeof value === "object") {
 							switch (true) {
 								case ((value.reps !== "") && (value.sets === "")):
@@ -33,7 +34,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "sets")}
+													onClick={() => addHandle(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -41,7 +42,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "reps")}
+													onClick={() => removeHandle(value.id, exercise.id, "reps")}
 												>
 													x
 												</RemoveButton>
@@ -54,7 +55,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "sets")}
+													onClick={() => removeHandle(value.id, exercise.id, "sets")}
 												>
 													x
 												</RemoveButton>
@@ -62,7 +63,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "reps")}
+													onClick={() => removeHandle(value.id, exercise.id, "reps")}
 												>
 													x
 												</RemoveButton>
@@ -75,7 +76,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "sets")}
+													onClick={() => addHandle(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -83,7 +84,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time} s
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "time")}
+													onClick={() => removeHandle(value.id, exercise.id, "time")}
 												>
 													x
 												</RemoveButton>
@@ -96,7 +97,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "sets")}
+													onClick={() => removeHandle(value.id, exercise.id, "sets")}
 												>
 													x
 												</RemoveButton>
@@ -104,7 +105,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time} s
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "time")}
+													onClick={() => removeHandle(value.id, exercise.id, "time")}
 												>
 													x
 												</RemoveButton>
@@ -117,7 +118,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "sets")}
+													onClick={() => addHandle(value.id, exercise.id, "sets")}
 												>
 													+
 												</PlusButton>
@@ -125,7 +126,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "reps")}
+													onClick={() => addHandle(value.id, exercise.id, "reps")}
 												>
 													+
 												</PlusButton>
@@ -133,7 +134,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "time")}>
+													onClick={() => addHandle(value.id, exercise.id, "time")}>
 													+
 												</PlusButton>
 											</Activity>
@@ -145,7 +146,7 @@ const RenderSession = () => {
 											<Activity>
 												Serie: {value.sets}
 												<RemoveButton
-													onClick={() => removeHandle(value.id, excercise.id, "sets")}
+													onClick={() => removeHandle(value.id, exercise.id, "sets")}
 												>
 													x
 												</RemoveButton>
@@ -153,7 +154,7 @@ const RenderSession = () => {
 											<Activity>
 												Powtórzenia: {value.reps}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "reps")}
+													onClick={() => addHandle(value.id, exercise.id, "reps")}
 												>
 													+
 												</PlusButton>
@@ -161,7 +162,7 @@ const RenderSession = () => {
 											<Activity>
 												Czas: {value.time}
 												<PlusButton
-													onClick={() => addHandle(value.id, excercise.id, "time")}
+													onClick={() => addHandle(value.id, exercise.id, "time")}
 												>
 													+
 												</PlusButton>

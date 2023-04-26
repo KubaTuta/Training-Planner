@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
-import { removeExcerise, selectWorkouts, setUp, setDown } from "../workoutSlice";
 import { RemoveButton } from "../../styled";
 import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButton } from "./styled";
 import { useState } from "react";
 import Modal from "./Modal";
+import { selectActiveContent, removeExercise, setUp, setDown } from "../Home/unitSlice";
 
 const RenderExcercises = () => {
 
-	const tasks = useSelector(selectWorkouts);
+	const tasks = useSelector(selectActiveContent);
 	const dispatch = useDispatch();
 
 	const [modal, setModal] = useState({
@@ -26,32 +26,32 @@ const RenderExcercises = () => {
 	return (
 		<LayoutWrapper>
 			{modal.modalState && (<Modal id={modal.modalId} toggleModal={toggleModal}/>)}
-			{tasks.map(excercise => (
-				<Tile key={excercise.id}>
+			{tasks.map(exercise => (
+				<Tile key={exercise.id}>
 					{
-						(excercise === tasks[0])
+						(exercise === tasks[0])
 							? ""
-							: <UpButton onClick={() => dispatch(setUp(excercise.id))} />
+							: <UpButton onClick={() => dispatch(setUp(exercise.id))} />
 					}
 					<Exercise>
-						{excercise.excercise}
+						{exercise.exercise}
 						<Buttons>
 							<EditButton
-								onClick={() => toggleModal(excercise.id)}
+								onClick={() => toggleModal(exercise.id)}
 							>
 								🔧
 							</EditButton>
 							<RemoveButton
-								onClick={() => dispatch(removeExcerise(excercise.id))}
+								onClick={() => dispatch(removeExercise(exercise.id))}
 							>
 								x
 							</RemoveButton>
 						</Buttons>
 					</Exercise>
 					{
-						(excercise === tasks[tasks.length - 1])
+						(exercise === tasks[tasks.length - 1])
 							? ""
-							: <DownButton onClick={() => dispatch(setDown(excercise.id))} />
+							: <DownButton onClick={() => dispatch(setDown(exercise.id))} />
 					}
 				</Tile>
 			))}
