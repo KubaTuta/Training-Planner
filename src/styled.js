@@ -56,6 +56,7 @@ export const Navbar = styled.ul`
   gap: 100px;
   margin: 0;
   height: 40px;
+  padding: 0;
 `;
 
 export const NavList = styled.li`
