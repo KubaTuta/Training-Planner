@@ -4,42 +4,6 @@ import { getUnitsFromLocalStorage } from "./unitLocalStorage";
 const unitSlice = createSlice({
   name: "units",
   initialState: getUnitsFromLocalStorage,
-  //   {
-  //     name: 'trening A',
-  //     id: 1,
-  //     active: false,
-  //     content: []
-  //   },
-  //   {
-  //     name: 'Trening B',
-  //     id: 2,
-  //     active: true,
-  //     content: [
-  //       {
-  //         exercise: 'pompki',
-  //         id: 1,
-  //         session1: {
-  //           id: 1,
-  //           sets: '',
-  //           reps: '',
-  //           time: '',
-  //           date: '25-04-2023'
-  //         }
-  //       },
-  //       {
-  //         exercise: 'przysiad',
-  //         id: 2,
-  //         session1: {
-  //           id: 1,
-  //           sets: '',
-  //           reps: '',
-  //           time: '',
-  //           date: '25-04-2023'
-  //         }
-  //       }
-  //     ]
-  //   }
-  // ],
   reducers: {
     addUnit: (state, action) => {
       const newUnit = action.payload;
@@ -67,10 +31,22 @@ const unitSlice = createSlice({
         ]
       }
     },
+    editUnitName: (state, action) => {
+      const {id, newName} = action.payload;
+      return state.map(unit=>{
+        if (unit.id === id) {
+          return {
+            ...unit,
+            name: newName
+          }
+        } else {
+          return unit
+        }
+      })
+    },
     removeUnit: (state, action) => {
       const id = action.payload;
 
-      console.log(state.length)
       state = state.filter(unit => unit.id !== id);
       return state
     },
@@ -292,6 +268,7 @@ const unitSlice = createSlice({
 
 export const {
   addUnit,
+  editUnitName,
   removeUnit,
   setActiveUnit,
   addExcercise,

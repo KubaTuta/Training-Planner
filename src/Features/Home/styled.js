@@ -19,6 +19,7 @@ export const StyledButton = styled.button`
   transition: 0.2s;
   &:hover {
     cursor: pointer;
+    box-shadow: inset 0px 0px 10px 2px #253B66;
     transform: scale(1.1);
   }
 `;
@@ -27,8 +28,8 @@ export const StyledList = styled.ul`
 `;
 
 export const StyledUnit = styled.li`
-display: flex;
-justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   list-style-type: none;
   transition: 0.2s;
   background-color:  ${({active, name})=> active === name ? "orange" : "transparent"};
