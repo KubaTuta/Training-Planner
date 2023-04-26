@@ -4,6 +4,8 @@ import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButto
 import { useState } from "react";
 import Modal from "./Modal";
 import { selectActiveContent, removeExercise, setUp, setDown } from "../Home/unitSlice";
+import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
+import RemoveModal from "../../common/RemoveModal";
 
 const RenderExcercises = () => {
 
@@ -15,6 +17,7 @@ const RenderExcercises = () => {
 		modalId: ""
 	});
 
+	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
 	const toggleModal = (id) => {
 		setModal({
@@ -26,6 +29,7 @@ const RenderExcercises = () => {
 	return (
 		<LayoutWrapper>
 			{modal.modalState && (<Modal id={modal.modalId} toggleModal={toggleModal}/>)}
+			{removeModal.state && <RemoveModal toggleRemoveModal={toggleRemoveModal} remove={removeExercise(removeModal.id)} />}
 			{tasks.map(exercise => (
 				<Tile key={exercise.id}>
 					{
@@ -42,7 +46,7 @@ const RenderExcercises = () => {
 								🔧
 							</EditButton>
 							<RemoveButton
-								onClick={() => dispatch(removeExercise(exercise.id))}
+								onClick={() => toggleRemoveModal(exercise.id)}
 							>
 								x
 							</RemoveButton>
