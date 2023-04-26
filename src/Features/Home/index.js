@@ -15,6 +15,7 @@ import {
 	StyledUnit
 } from "./styled";
 import { RemoveButton } from "../../styled";
+import RemoveModal from "../../hooks/RemoveModal";
 
 const Home = () => {
 	const units = useSelector(selectUnitState);
@@ -25,10 +26,22 @@ const Home = () => {
 	const toggleModal = () => {
 		setModal(!modal)
 	};
+	const [removeModal, setRemoveModal] = useState({
+		state: false,
+		id: undefined
+	});
+
+	const toggleRemoveModal = (id) => {
+		setRemoveModal(prevState => ({
+			state: !prevState.state,
+			id: id 
+		}))
+	};
 
 	return (
 		<LayoutWrapper>
 			{modal && <Modal toggleModal={toggleModal} />}
+			{removeModal.state && <RemoveModal toggleRemoveModal={toggleRemoveModal} remove={removeUnit(removeModal.id)} />}
 			<StyledButton onClick={() => toggleModal()}>
 				dodaj
 			</StyledButton>
@@ -40,7 +53,8 @@ const Home = () => {
 						key={unit.id}
 					>
 						<StyledSpan onClick={() => dispatch(setActiveUnit(unit.id))}>{unit.name}</StyledSpan>
-						<RemoveButton onClick={() => dispatch(removeUnit(unit.id))} >
+						{/* <RemoveButton onClick={() => dispatch(removeUnit(unit.id))} > */}
+						<RemoveButton onClick={() => toggleRemoveModal(unit.id)}>
 							x
 						</RemoveButton>
 					</StyledUnit>
