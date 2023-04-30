@@ -11,13 +11,26 @@ const RenderExcercises = () => {
 
 	const tasks = useSelector(selectActiveContent);
 	const dispatch = useDispatch();
+	const { removeModal, toggleRemoveModal } = useRemoveModal();
+
+	const [bgColor, setBgColor] = useState("#202F4D");
+	const [draggedId, setDraggedId] = useState(null);
+
+	const handleDragStart = (id) => {
+		setDraggedId(id)
+		setBgColor("transparent")
+	}
+
+	const handleDragEnd = (id) => {
+		setDraggedId(id)
+		setBgColor("#202F4D")
+	}
 
 	const [modal, setModal] = useState({
 		modalState: false,
 		modalId: ""
 	});
 
-	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
 	const toggleModal = (id) => {
 		setModal({
@@ -28,10 +41,15 @@ const RenderExcercises = () => {
 
 	return (
 		<LayoutWrapper>
-			{modal.modalState && (<Modal id={modal.modalId} toggleModal={toggleModal}/>)}
+			{modal.modalState && (<Modal id={modal.modalId} toggleModal={toggleModal} />)}
 			{removeModal.state && <RemoveModal toggleRemoveModal={toggleRemoveModal} remove={removeExercise(removeModal.id)} />}
 			{tasks.map(exercise => (
-				<Tile key={exercise.id}>
+				<Tile key={exercise.id}
+					draggable
+					onDragStart={() => handleDragStart(exercise.id)}
+					onDragEnd={() => handleDragEnd(exercise.id)}
+					bgColor={exercise.id === draggedId ? bgColor : "#202F4D"}
+				>
 					{
 						(exercise === tasks[0])
 							? ""
@@ -59,7 +77,7 @@ const RenderExcercises = () => {
 					}
 				</Tile>
 			))}
-			
+
 		</LayoutWrapper>
 	)
 };

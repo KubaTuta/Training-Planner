@@ -7,8 +7,9 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const Tile = styled.div`
-  background-color: #202F4D;
+  background-color: ${(props)=>props.bgColor};
   color: white;
+  cursor: move;
   min-height: 100px;
   margin: 5px;
   border-radius: 10px;
@@ -25,9 +26,9 @@ export const Tile = styled.div`
     gap: 20px;
   };
  
-  &:hover {
+  /* &:hover {
     background-color: rgb(16 1 5 / 40%);
-  }
+  } */
 `;
 
 export const Exercise = styled.div`
