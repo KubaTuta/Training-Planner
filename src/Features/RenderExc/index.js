@@ -1,9 +1,10 @@
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { RemoveButton } from "../../styled";
-import { Buttons, DownButton, EditButton, Exercise, LayoutWrapper, Tile, UpButton } from "./styled";
+import { Buttons, EditButton, LayoutWrapper, Tile } from "./styled";
 import { useState } from "react";
 import Modal from "./Modal";
-import { selectActiveContent, removeExercise, setUp, setDown } from "../Home/unitSlice";
+import { selectActiveContent, removeExercise, set } from "../Home/unitSlice";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import RemoveModal from "../../common/RemoveModal";
 
@@ -13,17 +14,13 @@ const RenderExcercises = () => {
 	const dispatch = useDispatch();
 	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
-	const [bgColor, setBgColor] = useState("#202F4D");
-	const [draggedId, setDraggedId] = useState(null);
+	const dragItem = useRef(null);
+	const dragOverItem = useRef(null);
 
-	const handleDragStart = (id) => {
-		setDraggedId(id)
-		setBgColor("transparent")
-	}
-
-	const handleDragEnd = (id) => {
-		setDraggedId(id)
-		setBgColor("#202F4D")
+	const handleDragDrop = () => {
+		const start = dragItem.current
+		const end = dragOverItem.current;
+		dispatch(set({ start, end }))
 	}
 
 	const [modal, setModal] = useState({
@@ -46,38 +43,25 @@ const RenderExcercises = () => {
 			{tasks.map(exercise => (
 				<Tile key={exercise.id}
 					draggable
-					onDragStart={() => handleDragStart(exercise.id)}
-					onDragEnd={() => handleDragEnd(exercise.id)}
-					bgColor={exercise.id === draggedId ? bgColor : "#202F4D"}
+					onDragStart={() => dragItem.current = exercise.id}
+					onDragEnter={() => dragOverItem.current = exercise.id}
+					onDragEnd={handleDragDrop}
 				>
-					{
-						(exercise === tasks[0])
-							? ""
-							: <UpButton onClick={() => dispatch(setUp(exercise.id))} />
-					}
-					<Exercise>
-						{exercise.exercise}
-						<Buttons>
-							<EditButton
-								onClick={() => toggleModal(exercise.id)}
-							>
-								🔧
-							</EditButton>
-							<RemoveButton
-								onClick={() => toggleRemoveModal(exercise.id)}
-							>
-								x
-							</RemoveButton>
-						</Buttons>
-					</Exercise>
-					{
-						(exercise === tasks[tasks.length - 1])
-							? ""
-							: <DownButton onClick={() => dispatch(setDown(exercise.id))} />
-					}
+					{exercise.exercise}
+					<Buttons>
+						<EditButton
+							onClick={() => toggleModal(exercise.id)}
+						>
+							🔧
+						</EditButton>
+						<RemoveButton
+							onClick={() => toggleRemoveModal(exercise.id)}
+						>
+							x
+						</RemoveButton>
+					</Buttons>
 				</Tile>
 			))}
-
 		</LayoutWrapper>
 	)
 };
