@@ -25,8 +25,9 @@ const Modal = ({ id, toggleModal }) => {
           <input
             placeholder="nazwa ćwiczenia"
             value={newName}
-            type="text"
+            type="textarea"
             ref={inputRef}
+            maxLength={35}
             onChange={(event) => setNewName(event.target.value)}
           />
           <button
