@@ -32,8 +32,8 @@ const unitSlice = createSlice({
       }
     },
     editUnitName: (state, action) => {
-      const {id, newName} = action.payload;
-      return state.map(unit=>{
+      const { id, newName } = action.payload;
+      return state.map(unit => {
         if (unit.id === id) {
           return {
             ...unit,
@@ -117,6 +117,7 @@ const unitSlice = createSlice({
     },
     editName: (state, action) => {
       const { id, newName } = action.payload;
+      console.log(id, newName)
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
         if (exercise.id === id) {
@@ -128,40 +129,28 @@ const unitSlice = createSlice({
         return exercise
       })
     },
-    setUp: (state, action) => {
-      const id = action.payload;
+    set: (state, action) => {
+      const { start, end } = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active);
       const unsortedTasks = state[activeUnit].content.map(exercise => {
-        if (exercise.id === id) {
+        if (exercise.id === start) {
           return {
             ...exercise,
-            id: id - 1
+            id: end
           }
-        }
-        if (exercise.id === id - 1) {
-          return {
-            ...exercise,
-            id: id
+        } else if (end > start) {
+          if (exercise.id <= end & exercise.id > start) {
+            return {
+              ...exercise,
+              id: exercise.id - 1
+            }
           }
-        }
-        return exercise
-      });
-      state[activeUnit].content = ([...unsortedTasks].sort((a, b) => a.id - b.id))
-    },
-    setDown: (state, action) => {
-      const id = action.payload;
-      const activeUnit = Object.keys(state).find(unit => state[unit].active);
-      const unsortedTasks = state[activeUnit].content.map(exercise => {
-        if (exercise.id === id) {
-          return {
-            ...exercise,
-            id: id + 1
-          }
-        }
-        if (exercise.id === id + 1) {
-          return {
-            ...exercise,
-            id: id
+        } else if (end < start) {
+          if (exercise.id >= end & exercise.id < start) {
+            return {
+              ...exercise,
+              id: exercise.id + 1
+            }
           }
         }
         return exercise
@@ -273,8 +262,7 @@ export const {
   addExcercise,
   removeExercise,
   editName,
-  setUp,
-  setDown,
+  set,
   addSession,
   removeSession,
   editDate,

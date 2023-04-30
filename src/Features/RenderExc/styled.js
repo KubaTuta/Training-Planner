@@ -9,68 +9,26 @@ export const LayoutWrapper = styled.div`
 export const Tile = styled.div`
   background-color: #202F4D;
   color: white;
+  cursor: move;
   min-height: 100px;
   margin: 5px;
   border-radius: 10px;
   box-shadow: 1px -1px 5px 0px rgb(79 51 112 / 24%);
   transition: 0.5s;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  &:first-child {
-    padding-top: 17%;
-  };
-  &:last-child {
-    justify-content: flex-start;
-    gap: 20px;
-  };
- 
+  align-items: center;
+  padding: 10px;
+  word-break: break-word;
   &:hover {
     background-color: rgb(16 1 5 / 40%);
   }
-`;
-
-export const Exercise = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin: 5px;
-  height: auto;
-  padding-top: auto;
-  padding-bottom: auto;
 `;
 
 export const Buttons = styled.div`
   display: flex;
   align-items: center;
   gap: 2px;
-`;
-
-export const UpButton = styled.button`
-  background-color: rgb(16 25 44);
-  border: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 10px 10px 0 0;
-  transition: 0.2s;
-  align-self: center;
-  padding: 0;
-  &:hover {
-    cursor: pointer;
-    background-color: teal;
-  }
-`;
-
-export const DownButton = styled.button`
-  background-color: rgb(16 25 44);
-  border: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 0 0 10px 10px;
-  transition: 0.2s;
-  &:hover {
-    cursor: pointer;
-    background-color: teal;  
-  }
 `;
 
 export const EditButton = styled.button`
