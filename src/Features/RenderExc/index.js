@@ -45,6 +45,7 @@ const RenderExcercises = () => {
 					draggable
 					onDragStart={() => dragItem.current = exercise.id}
 					onDragEnter={() => dragOverItem.current = exercise.id}
+					onDragOver={(e) => e.preventDefault()}
 					onDragEnd={handleDragDrop}
 				>
 					{exercise.exercise}
