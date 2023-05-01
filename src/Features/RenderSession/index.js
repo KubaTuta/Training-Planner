@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { removeActivity } from "../Home/unitSlice";
 import { Activity, Excercise, PlusButton, LayoutWrapper, SessionTile } from "./styled";
-import { RemoveButton } from "../../styled";
+import { RemoveButton } from "../styled";
 import { selectActiveContent } from "../Home/unitSlice";
 import Modal from "./Modal";
 import { useState } from "react";

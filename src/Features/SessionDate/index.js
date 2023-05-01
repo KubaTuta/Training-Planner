@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import { removeSession } from "../Home/unitSlice";
-import { RemoveButton } from "../../styled";
 import { LayoutWrapper, MiniDateTile, Date } from "./styled";
-import { Buttons, EditButton } from "../RenderExc/styled";
+import { Buttons } from "../RenderExc/styled";
+import { EditButton, RemoveButton } from "../styled";
 import Modal from "./Modal";
 import { useState } from "react";
 import { selectActiveContent } from "../Home/unitSlice";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import RemoveModal from "../../common/RemoveModal";
+import { Pencil } from "../../common/img/pencil";
 
 const SessionDate = () => {
 
@@ -45,7 +46,7 @@ const SessionDate = () => {
 									<EditButton
 										onClick={() => toggleModal(value.id)}
 									>
-										🔧
+										<Pencil />
 									</EditButton>
 									<RemoveButton
 										onClick={() => toggleRemoveModal(value.id)}
