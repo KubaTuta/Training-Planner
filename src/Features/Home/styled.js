@@ -17,24 +17,27 @@ export const StyledButton = styled.button`
   align-items: center;
   border: none;
   transition: 0.2s;
+  margin-top: 10px;
   &:hover {
     cursor: pointer;
     box-shadow: inset 0px 0px 10px 2px #253B66;
-    transform: scale(1.1);
   }
 `;
 
 export const StyledList = styled.ul`
+  
 `;
 
 export const StyledUnit = styled.li`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   list-style-type: none;
   transition: 0.2s;
-  background-color:  ${({active, name})=> active === name ? "orange" : "transparent"};
+  background-color:  ${({active, id})=> active === id ? "orange" : "transparent"};
+  padding: 20px 5px 20px 5px;
   &:hover {
-    cursor: pointer;
+    cursor: move;
     box-shadow: inset 0px 0px 10px 2px #253B66;
   }
 `;
