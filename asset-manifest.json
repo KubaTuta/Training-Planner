@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Training-Planner/static/css/main.a9ca4f6f.css",
-    "main.js": "/Training-Planner/static/js/main.55414338.js",
+    "main.js": "/Training-Planner/static/js/main.e82c3b13.js",
     "static/js/787.b5db2d3f.chunk.js": "/Training-Planner/static/js/787.b5db2d3f.chunk.js",
     "index.html": "/Training-Planner/index.html",
     "static/media/plus.svg": "/Training-Planner/static/media/plus.8004fe46e274e8255975ccb153ce3855.svg",
     "main.a9ca4f6f.css.map": "/Training-Planner/static/css/main.a9ca4f6f.css.map",
-    "main.55414338.js.map": "/Training-Planner/static/js/main.55414338.js.map",
+    "main.e82c3b13.js.map": "/Training-Planner/static/js/main.e82c3b13.js.map",
     "787.b5db2d3f.chunk.js.map": "/Training-Planner/static/js/787.b5db2d3f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a9ca4f6f.css",
-    "static/js/main.55414338.js"
+    "static/js/main.e82c3b13.js"
   ]
 }
