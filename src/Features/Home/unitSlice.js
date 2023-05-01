@@ -66,6 +66,35 @@ const unitSlice = createSlice({
         }
       })
     },
+    dragUnit: (state, action) => {
+      const {start, end} = action.payload;
+      console.log(start, end)
+      const unsortedUnits = state.map(unit=> {
+        if (unit.id === start) {
+          return {
+            ...unit,
+            id: end
+          }
+        } else if (end > start) {
+          if (unit.id <= end & unit.id > start) {
+            return {
+              ...unit,
+              id: unit.id - 1
+            }
+          }
+        } else if (end < start) {
+          if (unit.id >= end & unit.id < start) {
+            return {
+              ...unit,
+              id: unit.id + 1
+            }
+          }
+        }
+        return unit
+    })
+    console.log(unsortedUnits)
+    return ([...unsortedUnits].sort((a, b) => a.id - b.id))
+    },
     addExcercise: (state, action) => {
       const exerciseName = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
@@ -117,7 +146,6 @@ const unitSlice = createSlice({
     },
     editName: (state, action) => {
       const { id, newName } = action.payload;
-      console.log(id, newName)
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
       state[activeUnit].content = state[activeUnit].content.map(exercise => {
         if (exercise.id === id) {
@@ -259,6 +287,7 @@ export const {
   editUnitName,
   removeUnit,
   setActiveUnit,
+  dragUnit,
   addExcercise,
   removeExercise,
   editName,
@@ -273,7 +302,7 @@ export const selectUnitState = state => state.units;
 export const selectUnitName = state => selectUnitState(state).map(unit => unit.name);
 export const selectActiveName = state => {
   const activeName = selectUnitState(state).find((unit) => unit.active === true);
-  return activeName ? activeName.name : null;
+  return activeName ? activeName.id : null;
 };
 export const selectActiveContent = state => {
   const activeUnit = selectUnitState(state).find((unit) => unit.active === true);
