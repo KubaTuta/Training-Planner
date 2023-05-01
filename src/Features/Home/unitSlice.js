@@ -67,9 +67,8 @@ const unitSlice = createSlice({
       })
     },
     dragUnit: (state, action) => {
-      const {start, end} = action.payload;
-      console.log(start, end)
-      const unsortedUnits = state.map(unit=> {
+      const { start, end } = action.payload;
+      const unsortedUnits = state.map(unit => {
         if (unit.id === start) {
           return {
             ...unit,
@@ -91,9 +90,8 @@ const unitSlice = createSlice({
           }
         }
         return unit
-    })
-    console.log(unsortedUnits)
-    return ([...unsortedUnits].sort((a, b) => a.id - b.id))
+      })
+      return ([...unsortedUnits].sort((a, b) => a.id - b.id))
     },
     addExcercise: (state, action) => {
       const exerciseName = action.payload;
