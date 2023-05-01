@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Modal from "./Modal";
 import {
+	dragUnit,
 	removeUnit,
 	selectActiveName,
 	selectUnitState,
@@ -25,6 +26,15 @@ const Home = () => {
 
 	const units = useSelector(selectUnitState);
 	const active = useSelector(selectActiveName);
+
+	const dragItem = useRef(null);
+	const dragOverItem = useRef(null);
+		
+	const handleDrag = () => {
+		const start = dragItem.current;
+		const end = dragOverItem.current;
+		dispatch(dragUnit({start, end}))
+	}
 
 	const [modal, setModal] = useState(false);
 	const toggleModal = () => {
@@ -57,9 +67,14 @@ const Home = () => {
 				{Object.values(units).map(unit =>
 					<StyledUnit
 						active={active}
-						name={unit.name}
+						id={unit.id}
 						key={unit.id}
 						onClick={() => dispatch(setActiveUnit(unit.id))}
+						draggable
+						onDragStart={() => dragItem.current = unit.id}
+						onDragEnter={() => dragOverItem.current = unit.id}
+						onDragOver={(e) => e.preventDefault()}
+						onDragEnd={handleDrag}
 					>
 						{unit.name}
 						<Buttons>
