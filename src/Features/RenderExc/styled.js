@@ -7,7 +7,7 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const Tile = styled.div`
-  background-color: #47494d;
+  background-color: ${({ toSpot, id }) => id === toSpot ? "transparent" : "#47494d"} ;
   color: white;
   cursor: move;
   min-height: 100px;
@@ -20,9 +20,9 @@ export const Tile = styled.div`
   align-items: center;
   padding: 10px;
   word-break: break-word;
-  &:hover {
+  /* &:hover {
     background-color: rgb(16 1 5 / 40%);
-  }
+  } */
 `;
 
 export const Buttons = styled.div`
