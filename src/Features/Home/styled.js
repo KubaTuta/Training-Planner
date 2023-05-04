@@ -25,13 +25,15 @@ export const StyledButton = styled.button`
 `;
 
 export const StyledList = styled.ul`
-  
+  min-width: 400px;
+  max-width: 500px;
 `;
 
 export const StyledUnit = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  word-wrap: break-all;
   list-style-type: none;
   transition: 0.2s;
   background-color:  ${({active, id})=> active === id ? "orange" : "transparent"};
