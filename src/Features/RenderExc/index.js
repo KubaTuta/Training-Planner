@@ -7,7 +7,7 @@ import { selectActiveContent, removeExercise, set } from "../Home/unitSlice";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import Modal from "./Modal";
 import RemoveModal from "../../common/RemoveModal";
-import { Pencil } from '../../common/img/pencil';
+import pencil from "../../common/img/pencil.svg";
 
 const RenderExcercises = () => {
 
@@ -54,7 +54,7 @@ const RenderExcercises = () => {
 						<EditButton
 							onClick={() => toggleModal(exercise.id)}
 						>
-							<Pencil />
+							<img src={pencil} alt="" />
 						</EditButton>
 						<RemoveButton
 							onClick={() => toggleRemoveModal(exercise.id)}

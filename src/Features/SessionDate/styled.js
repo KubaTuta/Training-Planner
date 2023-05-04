@@ -17,7 +17,7 @@ export const Date = styled.div`
 
 export const MiniDateTile = styled.div`
   width: 180px;
-  background-color: #323d53;
+  background-color: #47494d;
   display: flex;
   justify-content: space-between;
   padding: 5px 10px 5px 10px;
