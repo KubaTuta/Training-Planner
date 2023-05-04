@@ -36,10 +36,11 @@ export const StyledUnit = styled.li`
   word-wrap: break-all;
   list-style-type: none;
   transition: 0.2s;
-  background-color:  ${({active, id})=> active === id ? "orange" : "transparent"};
+  background-color:  ${({ active, id }) => active === id ? "orange" : "transparent"};
   padding: 20px 5px 20px 5px;
+  box-shadow: ${({ toSpot, id }) => toSpot === id ? "inset 5px 5px 10px 5px #253B99" : "transparent"};
   &:hover {
     cursor: move;
     box-shadow: inset 0px 0px 10px 2px #253B66;
-  }
+}
 `;

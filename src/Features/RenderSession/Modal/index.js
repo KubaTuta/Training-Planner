@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addActivity, editName } from "../../Home/unitSlice";
+import { addActivity } from "../../Home/unitSlice";
 import { useEffect, useRef, useState } from "react";
 import { ModalTile, ModalWrapper } from "../../../styled";
 
@@ -7,7 +7,7 @@ const Modal = ({ modal, toggleModal }) => {
 
   const dispatch = useDispatch();
 
-  const [newValue, setNewValue] = useState("1");
+  const [newValue, setNewValue] = useState("");
   const inputRef = useRef(null);
 
   const onFormSubmit = (event) => {
@@ -23,7 +23,6 @@ const Modal = ({ modal, toggleModal }) => {
 
   useEffect(() => inputRef.current.focus(), []);
 
-  console.log(modal.activity)
   return (
     <ModalWrapper>
       <ModalTile>
