@@ -25,6 +25,6 @@ export const StyledButton = styled.button`
 `;
 
 export const Plus = styled(plus)`
-  fill: #202F4D;
+  fill: #47494d;
 `;
 

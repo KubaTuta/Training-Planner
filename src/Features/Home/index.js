@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Modal from "./Modal";
+import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import {
 	dragUnit,
 	removeUnit,
@@ -14,11 +14,12 @@ import {
 	StyledList,
 	StyledUnit
 } from "./styled";
-import { RemoveButton } from "../../styled";
+import Modal from "./Modal";
 import RemoveModal from "../../common/RemoveModal";
-import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
-import { Buttons, EditButton } from "../RenderExc/styled";
 import EditModal from "./EditModal";
+import { RemoveButton, EditButton } from "../styled";
+import { Buttons } from "../RenderExc/styled";
+import pencil from "../../common/img/pencil.svg";
 
 const Home = () => {
 
@@ -79,7 +80,7 @@ const Home = () => {
 						{unit.name}
 						<Buttons>
 							<EditButton onClick={() => toggleEditModal(unit.id)}>
-								🔧
+								<img src={pencil} alt="" />
 							</EditButton>
 							<RemoveButton onClick={() => toggleRemoveModal(unit.id)}>
 								x

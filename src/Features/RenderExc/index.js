@@ -1,12 +1,13 @@
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { RemoveButton } from "../../styled";
-import { Buttons, EditButton, LayoutWrapper, Tile } from "./styled";
+import { Buttons, LayoutWrapper, Tile } from "./styled";
+import { EditButton, RemoveButton } from "../styled";
 import { useState } from "react";
-import Modal from "./Modal";
 import { selectActiveContent, removeExercise, set } from "../Home/unitSlice";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
+import Modal from "./Modal";
 import RemoveModal from "../../common/RemoveModal";
+import pencil from "../../common/img/pencil.svg";
 
 const RenderExcercises = () => {
 
@@ -53,7 +54,7 @@ const RenderExcercises = () => {
 						<EditButton
 							onClick={() => toggleModal(exercise.id)}
 						>
-							🔧
+							<img src={pencil} alt="" />
 						</EditButton>
 						<RemoveButton
 							onClick={() => toggleRemoveModal(exercise.id)}
