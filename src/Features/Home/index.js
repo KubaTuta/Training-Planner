@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import {
@@ -30,12 +30,31 @@ const Home = () => {
 
 	const dragItem = useRef(null);
 	const dragOverItem = useRef(null);
-		
-	const handleDrag = () => {
-		const start = dragItem.current;
-		const end = dragOverItem.current;
-		dispatch(dragUnit({start, end}))
+	const [startTile, setStartTile] = useState(null);
+	const [endTile, setEndTile] = useState(null);
+
+	const handleStart = (id) => {
+		dragItem.current = id;
+		setStartTile(id)
 	}
+
+	const handleEnter = (id) => {
+		dragOverItem.current = id;
+		setEndTile(id)
+	}
+
+	const handleDragDrop = () => {
+		setEndTile(null)
+		setStartTile(null)
+	}
+
+	useEffect(() => {
+		if (startTile !== null & endTile !== null) {
+			dispatch(dragUnit({ start: startTile, end: endTile }))
+			setStartTile(endTile)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [endTile])
 
 	const [modal, setModal] = useState(false);
 	const toggleModal = () => {
@@ -72,10 +91,11 @@ const Home = () => {
 						key={unit.id}
 						onClick={() => dispatch(setActiveUnit(unit.id))}
 						draggable
-						onDragStart={() => dragItem.current = unit.id}
-						onDragEnter={() => dragOverItem.current = unit.id}
+						onDragStart={() => handleStart(unit.id)}
+						onDragEnter={() => handleEnter(unit.id)}
 						onDragOver={(e) => e.preventDefault()}
-						onDragEnd={handleDrag}
+						onDragEnd={handleDragDrop}
+						toSpot={endTile}
 					>
 						{unit.name}
 						<Buttons>

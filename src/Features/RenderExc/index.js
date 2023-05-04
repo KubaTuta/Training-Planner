@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Buttons, LayoutWrapper, Tile } from "./styled";
 import { EditButton, RemoveButton } from "../styled";
@@ -15,20 +15,40 @@ const RenderExcercises = () => {
 	const dispatch = useDispatch();
 	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
+	const [startTile, setStartTile] = useState(null);
+	const [endTile, setEndTile] = useState(null);
+
 	const dragItem = useRef(null);
 	const dragOverItem = useRef(null);
 
-	const handleDragDrop = () => {
-		const start = dragItem.current
-		const end = dragOverItem.current;
-		dispatch(set({ start, end }))
+	const handleStart = (id) => {
+		dragItem.current = id;
+		setStartTile(id)
+		console.log(`set ${id}`)
 	}
+
+	const handleEnter = (id) => {
+		dragOverItem.current = id;
+		setEndTile(id)
+
+	}
+	const handleDragDrop = () => {
+		setEndTile(null)
+		setStartTile(null)
+	}
+
+	useEffect(() => {
+		if (startTile !== null & endTile !== null) {
+			dispatch(set({ start: startTile, end: endTile }))
+			setStartTile(endTile)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [endTile])
 
 	const [modal, setModal] = useState({
 		modalState: false,
 		modalId: ""
 	});
-
 
 	const toggleModal = (id) => {
 		setModal({
@@ -44,10 +64,12 @@ const RenderExcercises = () => {
 			{tasks.map(exercise => (
 				<Tile key={exercise.id}
 					draggable
-					onDragStart={() => dragItem.current = exercise.id}
-					onDragEnter={() => dragOverItem.current = exercise.id}
+					onDragStart={() => handleStart(exercise.id)}
+					onDragEnter={() => handleEnter(exercise.id)}
 					onDragOver={(e) => e.preventDefault()}
 					onDragEnd={handleDragDrop}
+					id={exercise.id}
+					toSpot={endTile}
 				>
 					{exercise.exercise}
 					<Buttons>
