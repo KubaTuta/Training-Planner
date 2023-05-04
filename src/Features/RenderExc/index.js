@@ -24,7 +24,6 @@ const RenderExcercises = () => {
 	const handleStart = (id) => {
 		dragItem.current = id;
 		setStartTile(id)
-		console.log(`set ${id}`)
 	}
 
 	const handleEnter = (id) => {
