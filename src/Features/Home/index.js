@@ -19,7 +19,7 @@ import RemoveModal from "../../common/RemoveModal";
 import EditModal from "./EditModal";
 import { RemoveButton, EditButton } from "../styled";
 import { Buttons } from "../RenderExc/styled";
-import { Pencil } from "../../common/img/pencil";
+import pencil from "../../common/img/pencil.svg";
 
 const Home = () => {
 
@@ -80,7 +80,7 @@ const Home = () => {
 						{unit.name}
 						<Buttons>
 							<EditButton onClick={() => toggleEditModal(unit.id)}>
-								<Pencil />
+								<img src={pencil} alt="" />
 							</EditButton>
 							<RemoveButton onClick={() => toggleRemoveModal(unit.id)}>
 								x
