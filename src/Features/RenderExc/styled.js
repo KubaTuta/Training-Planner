@@ -7,7 +7,7 @@ export const LayoutWrapper = styled.div`
 `;
 
 export const Tile = styled.div`
-  background-color: #202F4D;
+  background-color: #47494d;
   color: white;
   cursor: move;
   min-height: 100px;

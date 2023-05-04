@@ -15,7 +15,7 @@ export const Excercise = styled.div`
 `;
 
 export const SessionTile = styled.div`
-  background-color: #202F4D;
+  background-color: #47494d;
   color: white;
   height: 100px;
   width: 180px;
@@ -26,7 +26,7 @@ export const SessionTile = styled.div`
   list-style-type: none;
   padding: 5px;
   &:hover {
-    background-color: rgb(16 1 5 / 30%);
+    box-shadow: 0px 0px 2px 3px #47494d;
   }
 `;
 
@@ -41,7 +41,7 @@ export const Activity = styled.div`
 export const PlusButton = styled.button`
   width: 20px;
   height: 20px;
-  background-color: teal;
+  background-color: #29292a;
   color: white;
   border: none;
   transition: 0.5s;
@@ -52,7 +52,7 @@ export const PlusButton = styled.button`
   border-radius: 3px;
   &:hover {
     transform: scale(1.1);
-    background-color: rgb(1, 109, 109);
+    background-color: #000000;
     cursor: pointer;
   }
 `;

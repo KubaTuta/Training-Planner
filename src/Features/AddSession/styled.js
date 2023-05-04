@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
   grid-area: addDate;
-  background-color: #202F4D;
+  background-color: #47494d;
   color: white;
   min-width: 20px;
   max-width: fit-content;

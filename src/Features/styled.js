@@ -15,7 +15,7 @@ export const Layout = styled.div`
 export const EditButton = styled.button`
   width: 20px;
   height: 20px;
-  background-color: #09667c;
+  background-color: #29292a;
   color: white;
   border: none;
   transition: 0.5s;
@@ -27,7 +27,7 @@ export const EditButton = styled.button`
   padding: 2px;
   &:hover {
     transform: scale(1.1);
-    background-color: teal;
+    background-color: #000000;
     cursor: pointer;
   }
   `;

@@ -18,7 +18,7 @@ export const ModalTile = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
-  background-color: #3B568C;
+  background-color: #29292a;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
