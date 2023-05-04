@@ -1,6 +1,9 @@
+
+
 html {
   box-sizing: border-box;
-  background-image: linear-gradient(to right, #3B568C, #405E99, #304673 );
+  /* background-image: linear-gradient(to right, #3B568C, #405E99, #304673 ); */
+  background-image: url("./common/img/wall.png");
   background-attachment: fixed;
 }
 
