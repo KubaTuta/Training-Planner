@@ -96,7 +96,7 @@ const unitSlice = createSlice({
     addExcercise: (state, action) => {
       const exerciseName = action.payload;
       const activeUnit = Object.keys(state).find(unit => state[unit].active)
-      const date = (new Date()).toLocaleString('pl-PL', { year: 'numeric', month: '2-digit', day: '2-digit' }).replace(/\./g, '-');
+      const date = (new Date()).toLocaleString('pl-PL', { year: 'numeric', month: '2-digit', day: '2-digit' }).split('.').reverse().join('-');
       if (activeUnit) {
         if (state[activeUnit].content.length === 0) {
           state[activeUnit].content = [
@@ -221,8 +221,13 @@ const unitSlice = createSlice({
       const activeUnit = Object.keys(state).find(unit => state[unit].active);
       const sessionName = "session" + (id);
       state[activeUnit].content = state[activeUnit].content.map(task => {
-        const { [sessionName]: beingRemovedSession, ...rest } = task;
-        return rest
+        if (Object.keys(task).length > 3) {
+          const { [sessionName]: beingRemovedSession, ...rest } = task;
+          return rest
+        } else {
+          alert("musisz mieć ustawioną przynajmniej jedną datę")
+          return task
+        }
       })
     },
     editDate: (state, action) => {
