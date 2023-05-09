@@ -1,10 +1,9 @@
 import { useDispatch } from "react-redux";
-import { addSession } from "../../Home/unitSlice";
 import { useRef, useState } from "react";
+import { addSession } from "../../Home/unitSlice";
 import { ModalTile, ModalWrapper } from "../../../styled";
 
 const Modal = ({ toggleModal }) => {
-
   const dispatch = useDispatch();
 
   const [newDate, setNewDate] = useState("");
@@ -14,7 +13,7 @@ const Modal = ({ toggleModal }) => {
     event.preventDefault();
     newDate && dispatch(addSession(newDate));
     toggleModal();
-  }
+  };
 
   return (
     <ModalWrapper>
@@ -26,16 +25,12 @@ const Modal = ({ toggleModal }) => {
             ref={inputRef}
             onChange={(event) => setNewDate(event.target.value)}
           />
-          <button
-            onClick={(event) => onFormSubmit(event)}
-          >Zapisz</button>
-          <button
-            onClick={() => toggleModal()}
-          >Anuluj</button>
+          <button onClick={(event) => onFormSubmit(event)}>Zapisz</button>
+          <button onClick={() => toggleModal()}>Anuluj</button>
         </form>
       </ModalTile>
     </ModalWrapper>
-  )
+  );
 };
 
 export default Modal;

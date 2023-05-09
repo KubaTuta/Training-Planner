@@ -35,7 +35,6 @@ export const Activity = styled.div`
   justify-content: space-between;
   margin: 0;
   padding: 5px;
-
 `;
 
 export const PlusButton = styled.button`

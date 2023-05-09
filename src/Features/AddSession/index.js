@@ -1,31 +1,26 @@
 import { useSelector } from "react-redux";
-import { LayoutWrapper, StyledButton } from "./styled";
-import Modal from "./Modal";
 import { useState } from "react";
 import { selectActiveContent } from "../Home/unitSlice";
+import Modal from "./Modal";
+import { LayoutWrapper, StyledButton } from "./styled";
 
 const AddSession = () => {
+  const tasks = useSelector(selectActiveContent);
 
-	const tasks = useSelector(selectActiveContent);
+  const [modal, setModal] = useState(false);
 
-	const [modal, setModal] = useState(false);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
-	
-
-	const toggleModal = () => {
-		setModal(!modal)
-	};
-
-	if (tasks.length === 0) {
-		return null
-	}
-
-	return (
-		<LayoutWrapper >
-			<StyledButton onClick={() => toggleModal()} />
-			{modal && <Modal toggleModal={toggleModal} />}
-		</LayoutWrapper>
-	)
+  return (
+    tasks?.length !== 0 && (
+      <LayoutWrapper>
+        <StyledButton onClick={() => toggleModal()} />
+        {modal && <Modal toggleModal={toggleModal} />}
+      </LayoutWrapper>
+    )
+  );
 };
 
 export default AddSession;
