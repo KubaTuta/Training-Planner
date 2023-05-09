@@ -10,18 +10,12 @@ const AddSession = () => {
 
 	const [modal, setModal] = useState(false);
 
-	
-
 	const toggleModal = () => {
 		setModal(!modal)
 	};
 
-	if (tasks.length === 0) {
-		return null
-	}
-
-	return (
-		<LayoutWrapper >
+	return tasks?.length !== 0 && (
+		<LayoutWrapper>
 			<StyledButton onClick={() => toggleModal()} />
 			{modal && <Modal toggleModal={toggleModal} />}
 		</LayoutWrapper>

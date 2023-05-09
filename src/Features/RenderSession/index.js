@@ -29,11 +29,7 @@ const RenderSession = () => {
 		)
 	};
 
-	if (tasks.length === 0) {
-		return null
-	}
-
-	return (
+	return tasks?.length !== 0 && (
 		<LayoutWrapper>
 			{modal.state && <Modal modal={modal} toggleModal={toggleModal}/>}
 			{tasks.map(exercise => (

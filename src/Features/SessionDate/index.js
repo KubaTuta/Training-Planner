@@ -28,11 +28,7 @@ const SessionDate = () => {
 
 	const { removeModal, toggleRemoveModal } = useRemoveModal();
 
-	if (tasks.length === 0) {
-		return null
-	}
-
-	return (
+	return tasks.length !== 0 && (
 		<LayoutWrapper>
 			{modal.modalState && <Modal id={modal.modalId} toggleModal={toggleModal} />}
 			{removeModal.state && <RemoveModal toggleRemoveModal={toggleRemoveModal} remove={removeSession(removeModal.id)} />}
