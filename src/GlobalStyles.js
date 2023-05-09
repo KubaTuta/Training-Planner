@@ -1,9 +1,10 @@
+import wallpaper from "./common/img/wall.png"
 const { createGlobalStyle } = require("styled-components");
 
 export const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
-    background-image: "./common/img/wall.png";
+    background-image: url(${wallpaper});
     background-attachment: fixed;
   }
 

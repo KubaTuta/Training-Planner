@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { ModalTile, ModalWrapper } from '../../../styled'
-import { useDispatch } from 'react-redux';
-import { editUnitName } from '../unitSlice';
+import React, { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { editUnitName } from "../unitSlice";
+import { ModalTile, ModalWrapper } from "../../../styled";
 
 const EditModal = ({ toggleEditModal, id }) => {
   const dispatch = useDispatch();
@@ -9,11 +9,11 @@ const EditModal = ({ toggleEditModal, id }) => {
 
   const [newName, setNewName] = useState("");
 
-  const onFormSubmit = ((event) => {
+  const onFormSubmit = (event) => {
     event.preventDefault();
     newName.trim().length > 0 && dispatch(editUnitName({ id, newName }));
     toggleEditModal();
-  });
+  };
 
   useEffect(() => inputRef.current.focus(), []);
   return (
@@ -27,16 +27,12 @@ const EditModal = ({ toggleEditModal, id }) => {
             ref={inputRef}
             onChange={(event) => setNewName(event.target.value)}
           />
-          <button
-            onClick={(event) => onFormSubmit(event)}
-          >Zapisz</button>
-          <button
-            onClick={() => toggleEditModal()}
-          >Anuluj</button>
+          <button onClick={(event) => onFormSubmit(event)}>Zapisz</button>
+          <button onClick={() => toggleEditModal()}>Anuluj</button>
         </form>
       </ModalTile>
     </ModalWrapper>
-  )
+  );
 };
 
 export default EditModal;

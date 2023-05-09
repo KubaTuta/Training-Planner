@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {ReactComponent as plus} from "./plus.svg";
+import { ReactComponent as plus } from "./plus.svg";
 
 export const LayoutWrapper = styled.div`
   grid-area: buttons;
@@ -27,4 +27,3 @@ export const StyledButton = styled.button`
 export const Plus = styled(plus)`
   fill: #47494d;
 `;
-

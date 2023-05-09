@@ -4,7 +4,6 @@ import { editDate } from "../../Home/unitSlice";
 import { ModalTile, ModalWrapper } from "../../../styled";
 
 const Modal = ({ id, toggleModal }) => {
-
   const dispatch = useDispatch();
 
   const [newDate, setNewDate] = useState("");
@@ -14,7 +13,7 @@ const Modal = ({ id, toggleModal }) => {
     event.preventDefault();
     newDate && dispatch(editDate({ id, newDate }));
     toggleModal();
-  }
+  };
 
   useEffect(() => inputRef.current.focus(), []);
 
@@ -28,16 +27,12 @@ const Modal = ({ id, toggleModal }) => {
             ref={inputRef}
             onChange={(event) => setNewDate(event.target.value)}
           />
-          <button
-            onClick={(event) => onFormSubmit(event, id)}
-          >Zapisz</button>
-          <button
-            onClick={() => toggleModal()}
-          >Anuluj</button>
+          <button onClick={(event) => onFormSubmit(event, id)}>Zapisz</button>
+          <button onClick={() => toggleModal()}>Anuluj</button>
         </form>
       </ModalTile>
     </ModalWrapper>
-  )
+  );
 };
 
 export default Modal;
