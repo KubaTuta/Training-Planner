@@ -1,13 +1,11 @@
-import "./index.css";
-import Workout from "./Features/workout";
 import { Route, Routes } from "react-router-dom";
-import Home from "./Features/Home";
-import { NavList, NavWrapper, Navbar, StyledNavLink } from "./styled";
 import { useSelector } from "react-redux";
 import { selectUnitState } from "./Features/Home/unitSlice";
+import Workout from "./Features/workout";
+import Home from "./Features/Home";
+import { NavList, NavWrapper, Navbar, StyledNavLink } from "./styled";
 
 function App() {
-
   const content = useSelector(selectUnitState);
 
   return (
@@ -15,19 +13,13 @@ function App() {
       <NavWrapper>
         <Navbar>
           <NavList>
-            <StyledNavLink to="/">
-              Home
-            </StyledNavLink>
+            <StyledNavLink to="/">Home</StyledNavLink>
           </NavList>
-          {
-            content.length !== 0 ?
-              <NavList>
-                <StyledNavLink to="/workout">
-                  Workout
-                </StyledNavLink>
-              </NavList> :
-              null
-          }
+          {content.length !== 0 ? (
+            <NavList>
+              <StyledNavLink to="/workout">Workout</StyledNavLink>
+            </NavList>
+          ) : null}
         </Navbar>
       </NavWrapper>
       <Routes>
