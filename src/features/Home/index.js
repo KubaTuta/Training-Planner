@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import {
@@ -15,6 +15,7 @@ import pencil from "../../common/img/pencil.svg";
 import { Buttons } from "../RenderExc/styled";
 import { RemoveButton, EditButton } from "../styled";
 import { LayoutWrapper, StyledButton, StyledList, StyledUnit } from "./styled";
+import { useDragNDrop } from "../../common/hooks/useDragNDrop";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,34 +23,8 @@ const Home = () => {
   const units = useSelector(selectUnitState);
   const active = useSelector(selectActiveName);
 
-  const dragItem = useRef(null);
-  const dragOverItem = useRef(null);
-  const [startTile, setStartTile] = useState(null);
-  const [endTile, setEndTile] = useState(null);
-
-  const handleStart = (id) => {
-    dragItem.current = id;
-    setStartTile(id);
-  };
-
-  const handleEnter = (id) => {
-    dragOverItem.current = id;
-    setEndTile(id);
-  };
-
-  const handleDragDrop = () => {
-    setEndTile(null);
-    setStartTile(null);
-  };
-
-  useEffect(() => {
-    if ((startTile !== null) & (endTile !== null)) {
-      dispatch(dragUnit({ start: startTile, end: endTile }));
-      setStartTile(endTile);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endTile]);
-
+  const {endTile, handleStart, handleEnter, handleDragDrop} = useDragNDrop(dragUnit);
+ 
   const [modal, setModal] = useState(false);
   const toggleModal = () => {
     setModal(!modal);
@@ -96,7 +71,7 @@ const Home = () => {
             onDragEnter={() => handleEnter(unit.id)}
             onDragOver={(e) => e.preventDefault()}
             onDragEnd={handleDragDrop}
-            toSpot={endTile}
+            shadow={endTile}
           >
             {unit.name}
             <Buttons>
