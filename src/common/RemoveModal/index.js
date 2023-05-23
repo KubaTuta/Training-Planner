@@ -7,7 +7,7 @@ const RemoveModal = ({ toggleRemoveModal, remove }) => {
   const dispatch = useDispatch();
   const handleRemove = () => {
     dispatch(remove);
-    toggleRemoveModal(undefined);
+    toggleRemoveModal();
   };
 
   return (
@@ -15,7 +15,7 @@ const RemoveModal = ({ toggleRemoveModal, remove }) => {
       <ModalTile>
         <p>Czy na pewno chcesz usunąć ten element?</p>
         <ConfirmationButton onClick={handleRemove}>Tak</ConfirmationButton>
-        <CancelButton onClick={() => toggleRemoveModal(undefined)}>Anuluj</CancelButton>
+        <CancelButton onClick={() => toggleRemoveModal()}>Anuluj</CancelButton>
       </ModalTile>
     </ModalWrapper>
   )
