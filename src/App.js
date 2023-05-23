@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { selectUnitState } from "./Features/Home/unitSlice";
-import Workout from "./Features/workout";
-import Home from "./Features/Home";
+import { selectUnitState } from "./features/Home/unitSlice";
+import Workout from "./features/workout";
+import Home from "./features/Home";
 import { NavList, NavWrapper, Navbar, StyledNavLink } from "./styled";
 
 function App() {
