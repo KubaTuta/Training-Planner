@@ -1,5 +1,4 @@
-import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
 import { selectActiveContent, removeExercise, set } from "../Home/unitSlice";
@@ -8,39 +7,13 @@ import RemoveModal from "../../common/RemoveModal";
 import pencil from "../../common/img/pencil.svg";
 import { Buttons, LayoutWrapper, Tile } from "./styled";
 import { EditButton, RemoveButton } from "../styled";
+import { useDragNDrop } from "../../common/hooks/useDragNDrop";
 
 const RenderExcercises = () => {
   const tasks = useSelector(selectActiveContent);
-  const dispatch = useDispatch();
   const { removeModal, toggleRemoveModal } = useRemoveModal();
 
-  const [startTile, setStartTile] = useState(null);
-  const [endTile, setEndTile] = useState(null);
-
-  const dragItem = useRef(null);
-  const dragOverItem = useRef(null);
-
-  const handleStart = (id) => {
-    dragItem.current = id;
-    setStartTile(id);
-  };
-
-  const handleEnter = (id) => {
-    dragOverItem.current = id;
-    setEndTile(id);
-  };
-  const handleDragDrop = () => {
-    setEndTile(null);
-    setStartTile(null);
-  };
-
-  useEffect(() => {
-    if ((startTile !== null) & (endTile !== null)) {
-      dispatch(set({ start: startTile, end: endTile }));
-      setStartTile(endTile);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [endTile]);
+  const {endTile, handleStart, handleEnter, handleDragDrop} = useDragNDrop(set);
 
   const [modal, setModal] = useState({
     modalState: false,
