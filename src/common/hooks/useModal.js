@@ -29,5 +29,5 @@ export const useModal = () => {
     });
   };
 
-  return { modal, setModal, toggleModal, toggleEditModal, toggleRemoveModal };
+  return { modal, toggleModal, toggleEditModal, toggleRemoveModal };
 };
