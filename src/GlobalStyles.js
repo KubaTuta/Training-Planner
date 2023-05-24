@@ -1,4 +1,4 @@
-import wallpaper from "./common/img/wall.png"
+import wallpaper from "./common/img/wall.png";
 const { createGlobalStyle } = require("styled-components");
 
 export const GlobalStyles = createGlobalStyle`
@@ -17,5 +17,8 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: 400;
     font-size: 1.1em;
     letter-spacing: 0.08em;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+      font-size: 0.8em;
+    }
   }
 `;

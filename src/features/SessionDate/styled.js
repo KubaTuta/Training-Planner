@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  grid-area: date;
+  grid-area: sessionDate;
   background-color: transparent;
   color: white;
   min-width: 150px;
@@ -13,6 +13,10 @@ export const Date = styled.div`
   display: flex;
   flex-direction: row-reverse;
   gap: 10px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const MiniDateTile = styled.div`
@@ -22,4 +26,9 @@ export const MiniDateTile = styled.div`
   justify-content: space-between;
   padding: 5px 10px 5px 10px;
   border-radius: 10px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;

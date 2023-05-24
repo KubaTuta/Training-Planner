@@ -8,7 +8,7 @@ const EditModal = ({ toggleEditModal, id }) => {
   const inputRef = useRef(null);
 
   const [newName, setNewName] = useState("");
-
+ 
   const onFormSubmit = (event) => {
     event.preventDefault();
     newName.trim().length > 0 && dispatch(editUnitName({ id, newName }));

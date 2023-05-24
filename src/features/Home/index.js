@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import useRemoveModal from "../../common/RemoveModal/useRemoveModal";
+import { useDragNDrop } from "../../common/hooks/useDragNDrop";
+import { useModal } from "../../common/hooks/useModal";
 import {
   dragUnit,
   removeUnit,
@@ -15,7 +15,6 @@ import pencil from "../../common/img/pencil.svg";
 import { Buttons } from "../RenderExc/styled";
 import { RemoveButton, EditButton } from "../styled";
 import { LayoutWrapper, StyledButton, StyledList, StyledUnit } from "./styled";
-import { useDragNDrop } from "../../common/hooks/useDragNDrop";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -23,37 +22,21 @@ const Home = () => {
   const units = useSelector(selectUnitState);
   const active = useSelector(selectActiveName);
 
-  const {endTile, handleStart, handleEnter, handleDragDrop} = useDragNDrop(dragUnit);
- 
-  const [modal, setModal] = useState(false);
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+  const { endTile, handleStart, handleEnter, handleDragDrop } =
+    useDragNDrop(dragUnit);
 
-  const [editModal, setEditModal] = useState({
-    state: false,
-    id: undefined,
-  });
-
-  const toggleEditModal = (id) => {
-    setEditModal((prevEditModal) => ({
-      state: !prevEditModal.state,
-      id: id,
-    }));
-  };
-
-  const { removeModal, toggleRemoveModal } = useRemoveModal();
+  const { modal, toggleModal, toggleEditModal, toggleRemoveModal } = useModal();
 
   return (
     <LayoutWrapper>
-      {modal && <Modal toggleModal={toggleModal} />}
-      {editModal.state && (
-        <EditModal toggleEditModal={toggleEditModal} id={editModal.id} />
+      {modal.modalState && <Modal toggleModal={toggleModal} />}
+      {modal.editState && (
+        <EditModal toggleEditModal={toggleEditModal} id={modal.modalId} />
       )}
-      {removeModal.state && (
+      {modal.removeState && (
         <RemoveModal
           toggleRemoveModal={toggleRemoveModal}
-          remove={removeUnit(removeModal.id)}
+          remove={removeUnit(modal.modalId)}
         />
       )}
       <StyledButton onClick={() => toggleModal()}>

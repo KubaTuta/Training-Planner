@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  grid-area: excercises;
+  grid-area: renderExc;
   position: sticky;
   left: 0;
 `;
