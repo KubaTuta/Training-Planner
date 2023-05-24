@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  grid-area: session;
+  grid-area: renderSession;
   display: flex;
   flex-direction: column;
 `;

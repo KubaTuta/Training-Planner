@@ -6,10 +6,15 @@ export const Layout = styled.div`
   grid-template-rows: auto 1fr;
   gap: 5px;
   grid-template-areas:
-    "buttons . date"
-    "excercises addDate session";
+    "addNewExc . sessionDate"
+    "renderExc addSession renderSession";
   width: 100%;
   height: 100%;
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const EditButton = styled.button`

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LayoutWrapper = styled.div`
-  grid-area: addDate;
+  grid-area: addSession;
   background-color: #47494d;
   color: white;
   min-width: 20px;
@@ -24,5 +24,9 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: rgb(16 1 5 / 40%);
     cursor: pointer;
+  }
+  @media (max-width: ${({theme})=>theme.breakpoint.medium}) {
+    width: 180px;
+    height: 20px;
   }
 `;

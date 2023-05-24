@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ReactComponent as plus } from "./plus.svg";
 
 export const LayoutWrapper = styled.div`
-  grid-area: buttons;
+  grid-area: addNewExc;
   background-color: transparent;
   border-radius: 10px;
   margin-bottom: 10px;
