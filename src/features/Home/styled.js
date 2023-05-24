@@ -8,6 +8,10 @@ export const LayoutWrapper = styled.div`
   display: flex;
   justify-content: center;
   margin: 5px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -22,11 +26,23 @@ export const StyledButton = styled.button`
     cursor: pointer;
     box-shadow: inset 0px 0px 10px 2px #253b66;
   }
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    height: 40px;
+    width: 200px;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    height: 30px;
+    width: 150px;
+  }
 `;
 
 export const StyledList = styled.ul`
   min-width: 400px;
   max-width: 500px;
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
+    padding-inline-start: 0;
+    min-width: 300px;
+  }
 `;
 
 export const StyledUnit = styled.li`
@@ -44,5 +60,7 @@ export const StyledUnit = styled.li`
   &:hover {
     cursor: move;
     box-shadow: inset 0px 0px 10px 2px #253b66;
+  }
+  @media (max-width: ${({ theme }) => theme.breakpoint.medium}) {
   }
 `;
